@@ -1,0 +1,423 @@
+/*
+    Theme Name: Maundy
+    Theme URL: https://bootstrapmade.com/maundy-free-coming-soon-bootstrap-theme/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+*/
+
+body {
+	line-height: 1.2;
+    height: 100%;
+    background-color: #ebeff2;
+    color: #333 !important;
+	font-family: 'Open Sans', sans-serif;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/**********************************
+***********************************/
+/**********************************
+***********************************/
+.content
+{
+	margin-top: 0px;
+	/* color: #fff; */
+}
+.logo img
+{
+	display: inline-block;
+}
+.logo h2
+{
+	font-family: 'Lobster', cursive;
+	font-size: 34px;
+    padding-top: 40px;
+}
+
+#info-section > div {
+    margin: 0px 1%;
+    display: inline-block;
+    font-size: 20px;
+    line-height: 52px;
+    position: relative;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+#info-section > div > span
+{
+	display: block;
+}
+.input-group-addon {
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.sub-p
+{
+	font-size: 14px;
+	padding: 5px 0px 15px;
+}
+.social ul li
+{
+	display: inline-block;
+	border: 1px solid #fff;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	margin-right: 10px;
+}
+.section-padding
+{
+	padding: 60px;
+}
+.about-title h2
+{
+	font-size: 24px;
+	font-family: 'Lobster', cursive;
+	padding-bottom: 10px;
+}
+.img
+{
+	margin-top: 30px;
+}
+.img i
+{
+	font-size: 44px;
+}
+.subcription-info 
+{
+    width: 40%;
+    margin: 0 auto 50px;
+}
+.abt-hd
+{
+	font-size: 20px;
+	font-weight: bold;
+	padding: 10px 0px 15px;
+}
+.contact-title i {
+    color: #FFFFFF;
+    font-size: 1.8em;
+    text-align: right;
+    display: block;
+    padding: 65px 0 0 0;
+}
+.contact-title h2
+{
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #fff;
+    text-align: right;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 15px 0px 30px;
+}
+.contact-title p {
+    text-align: right;
+    margin-top: -5px;
+    color: rgba(236,240,241,0.9);
+    font-size: 13px;
+    word-spacing: 1px;
+    line-height: 25px;
+    padding-bottom: 30px;
+}
+.contact input[type="text"], .contact input[type="email"] {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #EDEDED;
+    margin-bottom: 20px;
+    font-size: 13px;
+    outline: none;
+    color: #ffffff;
+}
+.social a i
+{
+    color: #fff;
+    display: block;
+    line-height: 48px;
+
+}
+.social a:hover
+{
+    text-decoration: none;
+}
+#contact-info
+{
+	padding: 0px 0px 40px;
+}
+.contact textarea {
+    width: 100%;
+    background: transparent;
+    font-size: 13px;
+    padding: 15px;
+    height: 100px;
+    border: 1px solid #EDEDED;
+    outline: none;
+    resize: none;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.contact-submit {
+    background-color: #24B7A4;
+    border: 2px solid #24B7A4;
+    color: #FFFFFF;
+    width: 100%;
+    display: block;
+    word-spacing: 1px;
+    outline: none;
+    margin: 0 auto;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-weight: 700;
+    padding: 10px;
+    -webkit-transition: all 0.3s ease-in-out !important;
+    -moz-transition: all 0.3s ease-in-out !important;
+    -ms-transition: all 0.3s ease-in-out !important;
+    -o-transition: all 0.3s ease-in-out !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+.validation {
+    color: red;
+    display:none;
+    margin: 0 0 20px;
+    font-weight:400;
+    font-size:13px;
+}
+
+#sendmessage {
+    color: green;
+    border:1px solid green;
+    display:none;
+    text-align:center;
+    padding:15px;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+#errormessage {
+    color: red;
+    display:none;
+    border:1px solid red;
+    text-align:center;
+    padding:15px;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+#sendmessage.show, #errormessage.show, .show {
+	display:block;
+}
+
+footer {
+    padding: 30px;
+    color: #fff;
+    text-align: center;
+    background-color: #242830;
+}
+.footer a
+{
+    color: #24B7A4;
+}
+.credits {
+    padding-top: 10px;
+}
+
+.subscribe_form {
+    position: relative;
+}
+.subscribe_form .subscribe {
+    right: 0px;
+    top: 0px;
+    width: 160px;
+    height: 50px;
+    position: absolute;
+    color: #FFF;
+    background-color: #24B7A4;
+    border: medium none;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    font-family: "Roboto Slab",serif;
+    font-size: 18px;
+}
+h2.subs-title  {
+    font-family: 'Lobster', cursive;
+    font-size: 34px;
+    padding: 30px 0px 20px;
+}
+.subscribe_form input {
+    height: 50px;
+    border: none;
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    border-radius: 30px;
+    color: #000;
+}
+.subscribe_form input[type=email]
+{
+    padding-left: 30px;
+}
+/**********************************
+Media Queries
+***********************************/
+@media (min-width: 501px) and (max-width: 901px) {
+    .contact-title{
+        padding: 15px;
+}
+.section-padding {
+        padding: 60px 30px;
+}
+.subscribe_form .subscribe {
+    width: 100px;
+    font-size: 15px;
+}
+.subcription-info {
+        width: 60%;
+        margin: 0 auto;
+}
+body{
+    overflow-x:hidden; 
+}
+}
+@media (min-width: 20px) and (max-width: 500px) {
+    .contact-title{
+        padding: 15px;
+}
+.section-padding {
+        padding: 60px 30px;
+}
+.subscribe_form .subscribe {
+    width: 100px;
+    font-size: 15px;
+}
+.subcription-info {
+        width: 80%;
+        margin: 0 auto;
+}
+}
+
+.num {
+    text-align:center;
+    margin-left: 50px;
+    }
+    .num ul
+    {
+    display:inline-block;
+    text-align:initial;
+    }
+    ul
+    {
+    padding-left:240px !important;
+    }
+
+    ul{
+        list-style-type: none;
+        padding-left: 0;
+        display: flex;
+      }
+      li{
+        padding: 25px;
+        margin-right: 10px;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+      li:hover{
+        background-color: rgb(100,100,100);
+        color: white;
+      }
+      li:active{
+        opacity: 0.7;
+      }
+
+.content{
+    height: 100vh;
+}
+
+.form-control{
+    display: inline-block;
+    width: 250px;
+    color:#333; 
+    font-size:15px;
+    float: right;
+}
+
+.subs-title{
+    font-size:20px; 
+    text-align:left; 
+    display:inline-block;
+    width: 100%;
+}
+
+.btn-action{
+    display: inline-block;
+    width: 150px;
+}
+
+.btn-control{
+    display: inline-block;
+    width: 200px;
+}
+
+.text-center{
+    text-align: center;
+}
+
+#toast-container>div{
+    width: auto;
+    height: 100px;
+    box-shadow: none;
+    opacity: 1;
+}
+
+#toast-container>div:hover{
+    box-shadow: none;
+}
+
+.toast-message{
+    font-size: 20px;
+    letter-spacing: 0.7px;
+    font-weight: 600;
+    margin-top: 22px;
+    margin-left: 15px;
+    margin-right: 25px;
+}
+
+.notification0 {
+    background-color: #1b75bb;
+}
+
+.notification1 {
+    background-color: #f39c11;
+}
+
+.notification2 {
+    background-color: #d25400;
+}
+
+.notification3 {
+    background-color: #17a086;
+}
+
+.toast-error{
+    background-color: #c1392d;
+}

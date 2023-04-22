@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Renewable Energy Token App</title>
+  <link href='https://fonts.googleapis.com/css?family=Lobster|Open+Sans:400,400italic,300italic,300|Raleway:300,400,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/toastr.min.css">
+  <link rel="stylesheet" type="text/css" href="css/animate.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+  <div class="content">
+    <div class="container wow fadeInUp delay-03s">
+      <div class="row">      
+        <div class="logo text-center">
+		      <h2>Trading Renewable Energy Certificate</h2>
+          <h3></h3>
+        </div>
+      </div>
+      
+      <div class="text-center" > <p><b>Current account: </b><span id="current_account"></span></p>
+
+      <div class="row text-center" style="padding-top:20px">
+
+        <div class="col-lg-2 col-lg-offset-2 text-center img-chairperson">
+            <img src="img/antiqueTrophy.jpg" class="rounded" height="400px" width="280px">
+        </div>
+        
+        <div class="col-lg-6 col-lg-offset-1 distributor" style="display: none;">
+          <div style="margin-left:40px;">
+            <h2 class="subs-title text-center">Create REC</h2>
+            <label class="subs-title">
+                <b>Id: </b>&nbsp;
+                  <input type="text" class="generate-rec form-control" id="id-value" placeholder="Enter Id here">
+                <br/>
+                <br>
+            </label>
+
+
+            <label class="subs-title">
+                <b>Name: </b>&nbsp;
+                  <input type="text" class="generate-rec form-control" id="name-value">
+                <br/>
+            </label>
+            
+            <label class="subs-title">
+                <b>Address: </b>&nbsp;
+                  <input type="text" class="generate-rec form-control" id="address-value">
+                <br/>
+            </label>
+
+            <label class="subs-title">
+                <b>Quantity: </b>&nbsp;
+                  <input type="text" class="generate-rec form-control" id="quantity-value">
+                <br/>
+            </label>
+            
+            <label class="subs-title">
+                <b>Price: </b>&nbsp;
+                  <input type="text" class="generate-rec form-control" id="price-value">
+                <br/>
+            </label>
+
+            <div style="padding-top:25px"><button type="submit" id="submit-generate-rec" class="btn btn-primary btn-action align-center">Generate REC</button></div>
+            
+            <hr style="width:200px">
+            
+            <h2 class="subs-title text-center">Approve User</h2>
+
+            <label class="subs-title">
+                <b>Address:</b>&nbsp;
+                  <input type="text" class="approve-user form-control" id="address-value">
+                  &nbsp; <br><br>
+                <br/>
+            </label>
+    
+            <div class="row" style="padding-top:20px"> 
+                  <div><button type="submit" id="submit-approve-user" class="btn btn-primary btn-action align-center">Approve User</button></div>
+                  <br>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-lg-offset-1 registered-user" style="display: none;">
+          <div style="margin-left:40px;">
+            <h2 class="subs-title text-center">Get Certificates of User</h2>
+            <label class="subs-title">
+                <b>Address: </b>&nbsp;
+                  <input type="text" class="get-certificates-of-user form-control" id="address-value" placeholder="Enter Id here">
+                <br/>
+                <br>
+            </label>
+           
+	    <div style="padding-top:25px"><button type="submit" id="submit-get-certificates-of-user" class="btn btn-primary btn-action align-center">Get Certificates of User</button></div>
+	    
+            <hr style="width:200px">
+            
+            <h2 class="subs-title text-center">Get All Certificates</h2>
+            
+	    <div style="padding-top:25px"><button type="submit" id="submit-get-all-certificates" class="btn btn-primary btn-action align-center">Get All Certificates</button></div>
+	    
+            <hr style="width:200px">
+
+            <h2 class="subs-title text-center">Get Certificate</h2>
+            
+            <label class="subs-title">
+                <b>Id: </b>&nbsp;
+                  <input type="text" class="get-certificate form-control" id="id-value">
+                <br/>
+            </label>
+            
+	    <div style="padding-top:25px"><button type="submit" id="submit-get-certificate" class="btn btn-primary btn-action align-center">Get Certificate</button></div>
+
+            <hr style="width:200px">
+
+            <h2 class="subs-title text-center">Verify REC</h2>
+
+           <label class="subs-title">
+                <b>Id: </b>&nbsp;
+                  <input type="text" class="get-rec form-control" id="id-value">
+                <br/>
+            </label>
+                        
+	    <div style="padding-top:25px"><button type="submit" id="submit-verify-rec" class="btn btn-primary btn-action align-center">Verify REC</button></div>
+
+             <hr style="width:200px">
+
+             <h2 class="subs-title text-center">Sell REC</h2>
+             
+            <label class="subs-title">
+                <b>Id: </b>&nbsp;
+                  <input type="text" class="sell-rec form-control" id="id-value">
+                <br/>
+            </label>
+            
+            <div style="padding-top:25px"><button type="submit" id="submit-sell-rec" class="btn btn-primary btn-action align-center">Sell REC</button></div>
+
+             <hr style="width:200px">
+
+             <h2 class="subs-title text-center">Buy REC</h2>
+            
+            <label class="subs-title">
+                <b>Id: </b>&nbsp;
+                  <input type="text" class="buy-rec form-control" id="id-value">
+                <br/>
+            </label>
+
+            <div style="padding-top:25px"><button type="submit" id="submit-buy-rec" class="btn btn-primary btn-action align-center">Buy REC</button></div>
+            
+            <hr style="width:200px">
+
+            <h2 class="subs-title text-center">Top Up Balance</h2>
+    
+            <div class="row" style="padding-top:20px"> 
+                  <div><button type="submit" id="submit-top-up" class="btn btn-primary btn-action align-center">Top Up Balance</button></div>
+                  <br>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+		<br><hr>
+
+
+    </div>
+      <br><br>
+    </div>
+  </div>
+  
+  
+</body>
+<script src="js/dist/jquery.min.js"></script>
+  <script src="js/dist/bootstrap.min.js"></script>
+  <script src="js/dist/jquery.countdown.min.js"></script>
+  <script src="js/dist/wow.js"></script>
+  <script src="js/dist/custom.js"></script>
+  <script src="js/dist/bootstrap.min.js"></script>
+  <script src="js/dist/toastr.min.js"></script>
+  <script src="js/dist/web3.min.js"></script>
+  <script src="js/dist/truffle-contract.js"></script>
+  <script src="js/app.js"></script>
+</html>
