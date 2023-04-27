@@ -45,14 +45,27 @@ App = {
   bindEvents: function () {
     $(document).on('click', '#submit-generate-rec', App.handleGenerateREC);
     $(document).on('click', '#submit-approve-user', App.handleApproveUser);
-    $(document).on('click', '#submit-get-all-certificates-of-user', App.handleGetAllCertificatesOfUser);
+    // $(document).on('click', '#submit-get-all-certificates-of-user', App.handleGetAllCertificatesOfUser);
     $(document).on('click', '#submit-get-all-certificates', App.handleGetAllCertificates);
     $(document).on('click', '#submit-get-certificate', App.handleGetCertificate);
     $(document).on('click', '#submit-verify-rec', App.handleVerifyREC);
     $(document).on('click', '#submit-sell-rec', App.handleSellREC);
     $(document).on('click', '#submit-buy-rec', App.handleBuyREC);
     $(document).on('click', '#submit-top-up', App.handleTopUpBalance);
+	
+	$('#create-REC-nav-item').click(function(e) {
+		e.preventDefault();
+		document.getElementById('create-REC-page').style.display = "none";
+		document.getElementById('approve-User-page').style.display = "none";
+		document.getElementById('create-REC-page').style.display = "block";
+	})
 
+	$('#approve-User-nav-item').click(function(e) {
+		e.preventDefault();
+		document.getElementById('create-REC-page').style.display = "none";
+		document.getElementById('approve-User-page').style.display = "none";
+		document.getElementById('approve-User-page').style.display = "block";
+	})
     //$(document).on('click', '#register', function(){ var ad = $('#enter_address').val(); App.handleRegister(ad); });
   },
 
