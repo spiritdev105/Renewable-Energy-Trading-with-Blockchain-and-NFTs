@@ -6,6 +6,7 @@ App = {
   // network_id: 5777,
   chairPerson: null,
   currentAccount: null,
+  currentAccountRole: null,
 
   init: function () {
     console.log("Checkpoint 0");
@@ -36,7 +37,7 @@ App = {
       App.contracts.vote.setProvider(App.web3Provider);
       App.currentAccount = web3.eth.coinbase;
       jQuery('#current_account').text(App.currentAccount);
-      App.getChairperson();
+	  App.getUserRole();
       return App.bindEvents();
     });
   },
@@ -66,20 +67,31 @@ App = {
     });
   },
 
-  getChairperson: function() {
-    App.contracts.vote.deployed().then(function(instance) {
-      return instance.beneficiary();
-    }).then(function(result) {
-      App.chairPerson = result;
-      if(App.currentAccount == App.chairPerson) {
-        $(".chairperson").css("display", "inline");
-        $(".img-chairperson").css("width", "100%");
-        $(".img-chairperson").removeClass("col-lg-offset-2");
-      } else {
-        $(".other-user").css("display", "inline");
-      }
-    })
+  getUserRole: function() {
+	App.contracts.vote.deployed().then(function(instance) {
+		generateRECInstance = instance;
+		console.log(instance)
+        return generateRECInstance.getUserRole(App.currentAccount, {from:App.currentAccount});
+	  }).then(function(result) {
+		App.currentAccountRole = result;
+		jQuery('#current_account_role').text(App.currentAccountRole);
+	  })
   },
+
+//   getChairperson: function() {
+//     App.contracts.vote.deployed().then(function(instance) {
+//       return instance.beneficiary();
+//     }).then(function(result) {
+//       App.chairPerson = result;
+//       if(App.currentAccount == App.chairPerson) {
+//         $(".chairperson").css("display", "inline");
+//         $(".img-chairperson").css("width", "100%");
+//         $(".img-chairperson").removeClass("col-lg-offset-2");
+//       } else {
+//         $(".other-user").css("display", "inline");
+//       }
+//     })
+//   },
 
   handleGenerateREC: function () {
     event.preventDefault();
@@ -299,7 +311,7 @@ $(function () {
   });
 });
 
-// // code for reloading the page on account change
-// window.ethereum.on('accountsChanged', function (){
-//   location.reload();
-// })
+// code for reloading the page on account change
+window.ethereum.on('accountsChanged', function (){
+  location.reload();
+})

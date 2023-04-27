@@ -15,24 +15,30 @@
 </head>
 
 <body>
-  <div class="content">
-    <div class="container wow fadeInUp delay-03s">
-      <div class="row">      
+	<div class="container">
+		<div class="row">      
         <div class="logo text-center">
 		      <h2>Trading Renewable Energy Certificate</h2>
           <h3></h3>
         </div>
       </div>
+	<nav class="navbar navbar-dark bg-dark">
+		  <ul class="nav navbar-nav">
+			<li><a href="#">Create REC</a></li>
+			<li><a href="#">Approve User</a></li>
+		  </ul>
+	  </nav>
+	</div>
+  <div class="content">
+    <div class="container wow fadeInUp delay-03s">
       
       <div class="text-center" > <p><b>Current account: </b><span id="current_account"></span></p>
+	  <div class="text-center" > <p><b>Role: </b><span id="current_account_role"></span></p>
+
 
       <div class="row text-center" style="padding-top:20px">
-
-        <div class="col-lg-2 col-lg-offset-2 text-center img-chairperson">
-            <img src="img/antiqueTrophy.jpg" class="rounded" height="400px" width="280px">
-        </div>
         
-        <div class="col-lg-6 col-lg-offset-1 distributor" style="display: none;">
+        <div class="col-lg-6 col-lg-offset-1 distributor" style="display: block;">
           <div style="margin-left:40px;">
             <h2 class="subs-title text-center">Create REC</h2>
             <label class="subs-title">

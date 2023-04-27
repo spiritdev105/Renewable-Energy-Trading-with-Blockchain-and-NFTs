@@ -51,6 +51,18 @@ contract RenewableEnergyToken is ERC721 {
         _;
     }
 
+	function getUserRole(address user) public view returns (string memory) {
+		if (user == owner) {
+			return "owner";
+		} else if (users[user].isDistributor) {
+			return "distributor";
+		} else if (users[user].isRegistered) {
+			return "registered";
+		} else {
+			return "none";
+		}
+	}
+
     function getCertificatesOfUser() public view onlyRegistered returns (REC[] memory) {
         return users[msg.sender].certificates;
     }
