@@ -51,13 +51,16 @@ App = {
 	document.getElementById('sell-REC-page').style.display = "none";
 	document.getElementById('buy-REC-page').style.display = "none";
 	document.getElementById('topup-balance-page').style.display = "none";
+	document.getElementById('get-certificates-of-user-page').style.display = "none";
+	document.getElementById('get-all-certificates-page').style.display = "none";
+	document.getElementById('get-certificate-page').style.display = "none";
   },
 
   bindEvents: function () {
 	$(document).on('click', '#submit-approve-distributor', App.handleApproveDistributor);
     $(document).on('click', '#submit-generate-rec', App.handleGenerateREC);
     $(document).on('click', '#submit-approve-user', App.handleApproveUser);
-    // $(document).on('click', '#submit-get-all-certificates-of-user', App.handleGetAllCertificatesOfUser);
+    $(document).on('click', '#submit-get-certificates-of-user', App.handleGetAllCertificatesOfUser);
     $(document).on('click', '#submit-get-all-certificates', App.handleGetAllCertificates);
     $(document).on('click', '#submit-get-certificate', App.handleGetCertificate);
     $(document).on('click', '#submit-verify-rec', App.handleVerifyREC);
@@ -112,6 +115,24 @@ App = {
 		e.preventDefault();
 		App.resetAll(document);
 		document.getElementById('topup-balance-page').style.display = "block";
+	})
+
+	$('#get-all-certificates-nav-item').click(function(e) {
+		e.preventDefault();
+		App.resetAll(document);
+		document.getElementById('get-all-certificates-page').style.display = "block";
+	})
+
+	$('#get-certificates-of-user-nav-item').click(function(e) {
+		e.preventDefault();
+		App.resetAll(document);
+		document.getElementById('get-certificates-of-user-page').style.display = "block";
+	})
+
+	$('#get-certificate-nav-item').click(function(e) {
+		e.preventDefault();
+		App.resetAll(document);
+		document.getElementById('get-certificate-page').style.display = "block";
 	})
     //$(document).on('click', '#register', function(){ var ad = $('#enter_address').val(); App.handleRegister(ad); });
   },

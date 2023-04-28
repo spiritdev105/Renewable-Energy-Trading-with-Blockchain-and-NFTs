@@ -24,6 +24,15 @@
       </div>
 	  <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
 		<ul class="nav navbar-nav mr-auto">
+		<li class="nav-item" id="get-all-certificates-nav-item-li" style="display:none">
+			<a class="nav-link" href="#" id="get-all-certificates-nav-item">Get All Certificates</a>
+		</li>
+		<li class="nav-item" id="get-certificates-of-user-nav-item-li" style="display:none">
+			<a class="nav-link" href="#" id="get-certificates-of-user-nav-item">Get Certificates Of User</a>
+		</li>
+		<li class="nav-item" id="get-certificate-nav-item-li" style="display:none">
+			<a class="nav-link" href="#" id="get-certificate-nav-item">Get Certificate</a>
+		</li>
 		<li class="nav-item">
 			<a class="nav-link" href="#" id="approve-Distributor-nav-item">Approve Distributor</a>
 		</li>
@@ -172,7 +181,7 @@
 				</div>
 			</div>
 		</div>
-        <div class="col-lg-6 col-lg-offset-1 registered-user" style="display: none;">
+        <div class="col-lg-6 col-lg-offset-1 registered-user" id="get-certificates-of-user-page" style="display: none;">
           <div style="margin-left:40px;">
             <h2 class="subs-title text-center">Get Certificates of User</h2>
             <label class="subs-title">
@@ -182,35 +191,37 @@
                 <br>
             </label>
            
-	    <center style="padding-top:25px"><button type="submit" id="submit-get-certificates-of-user" class="btn btn-primary btn-action align-center">Get Certificates of User</button></center>
+	    	<center style="padding-top:25px"><button type="submit" id="submit-get-certificates-of-user" class="btn btn-primary btn-action align-center">Get Certificates of User</button></center>
 	    
             <hr style="width:200px">
-            
-            <h2 class="subs-title text-center">Get All Certificates</h2>
-            
-	    <center style="padding-top:25px"><button type="submit" id="submit-get-all-certificates" class="btn btn-primary btn-action align-center">Get All Certificates</button></center>
-	    
-            <hr style="width:200px">
+          </div>
+        </div>
 
-            <h2 class="subs-title text-center">Get Certificate</h2>
-            
-            <label class="subs-title">
+		<div class="col-lg-6 col-lg-offset-1 registered-user" id="get-all-certificates-page" style="display: none;">
+			<div style="margin-left:40px;">
+			  <h2 class="subs-title text-center">Get All Certificates</h2>
+			  
+			 
+			  <center style="padding-top:25px"><button type="submit" id="submit-get-all-certificates" class="btn btn-primary btn-action align-center">Get All Certificates</button></center> 
+		  
+			  <hr style="width:200px">
+			</div>
+		  </div>
+
+		  <div class="col-lg-6 col-lg-offset-1 registered-user" id="get-certificate-page" style="display: none;">
+			<div style="margin-left:40px;">
+			  <h2 class="subs-title text-center">Get Certificate</h2>
+			  
+			  <label class="subs-title">
                 <b>Id: </b>&nbsp;
                   <input type="text" class="get-certificate form-control" id="id-value"></input>
                 <br/>
             </label>
-            
-	    <center style="padding-top:25px"><button type="submit" id="submit-get-certificate" class="btn btn-primary btn-action align-center">Get Certificate</button></center>
-
-            <hr style="width:200px">
-
-           
-
-            
-
-
-          </div>
-        </div>
+			<center style="padding-top:25px"><button type="submit" id="submit-get-certificate" class="btn btn-primary btn-action align-center">Get Certificate</button></center>
+		  
+			  <hr style="width:200px">
+			</div>
+		  </div>
 
 		<div class="col-lg-6 col-lg-offset-1 distributor" id="verify-REC-page" style="display: none;">
 			<div style="margin-left:40px;">
