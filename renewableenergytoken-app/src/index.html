@@ -48,6 +48,10 @@
 		  <li class="nav-item" id="buy-rec-nav-item-li" style="display:none">
 			<a class="nav-link" href="#" id="buy-rec-nav-item">Buy REC</a>
 		  </li>
+
+		  <li class="nav-item" id="top-up-nav-item-li" style="display:none">
+			<a class="nav-link" href="#" id="top-up-nav-item">Buy REC</a>
+		  </li>
 		</ul>
 	  </nav>
 	</div>
@@ -200,91 +204,69 @@
 
             <hr style="width:200px">
 
-            <h2 class="subs-title text-center">Verify REC</h2>
+           
 
-           <label class="subs-title">
-                <b>Id: </b>&nbsp;
-                  <input type="text" class="get-rec form-control" id="id-value"></input>
-                <br/>
-            </label>
-                        
-	    <center style="padding-top:25px"><button type="submit" id="submit-verify-rec" class="btn btn-primary btn-action align-center">Verify REC</button></center>
-
-             <hr style="width:200px">
-
-             <h2 class="subs-title text-center">Sell REC</h2>
-             
-            <label class="subs-title">
-                <b>Id: </b>&nbsp;
-                  <input type="text" class="sell-rec form-control" id="id-value"></input>
-                <br/>
-            </label>
             
-            <center style="padding-top:25px"><button type="submit" id="submit-sell-rec" class="btn btn-primary btn-action align-center">Sell REC</button></center>
 
-             <hr style="width:200px">
 
-             <h2 class="subs-title text-center">Buy REC</h2>
-            
-            <label class="subs-title">
-                <b>Id: </b>&nbsp;
-                  <input type="text" class="buy-rec form-control" id="id-value"></input>
-                <br/>
-            </label>
-
-            <center style="padding-top:25px"><button type="submit" id="submit-buy-rec" class="btn btn-primary btn-action align-center">Buy REC</button></center>
-            
-            <hr style="width:200px">
-
-            <h2 class="subs-title text-center">Top Up Balance</h2>
-    
-            <div class="row" style="padding-top:20px"> 
-                  <center><button type="submit" id="submit-top-up" class="btn btn-primary btn-action align-center">Top Up Balance</button></center>
-                  <br>
-            </div>
           </div>
         </div>
 
 		<div class="col-lg-6 col-lg-offset-1 distributor" id="verify-REC-page" style="display: none;">
 			<div style="margin-left:40px;">
-			  <h2 class="subs-title text-center">verify REC</h2>
-			  <label class="subs-title">
-				  <b>Id: </b>&nbsp;
-					<input type="text" class="generate-rec form-control" id="id-value" placeholder="Enter Id here"></input>
-				  <br/>
-				  <br>
-			  </label>
-  
-			  <center style="padding-top:25px"><button type="submit" id="submit-verify-rec" class="btn btn-primary btn-action align-center">Verify REC</button></center>
-			  
+				<h2 class="subs-title text-center">Verify REC</h2>
+
+				<label class="subs-title">
+					 <b>Id: </b>&nbsp;
+					   <input type="text" class="get-rec form-control" id="id-value"></input>
+					 <br/>
+				 </label>
+							 
+					 <center style="padding-top:25px"><button type="submit" id="submit-verify-rec" class="btn btn-primary btn-action align-center">Verify REC</button></center>
+	 
+				  <hr style="width:200px">
 			</div>
 		  </div>
 		  <div class="col-lg-6 col-lg-offset-1 distributor" id="buy-REC-page" style="display: none;">
 			<div style="margin-left:40px;">
-			  <h2 class="subs-title text-center">buy REC</h2>
-			  <label class="subs-title">
-				  <b>Id: </b>&nbsp;
-					<input type="text" class="generate-rec form-control" id="id-value" placeholder="Enter Id here"></input>
-				  <br/>
-				  <br>
-			  </label>
-  
-			  <center style="padding-top:25px"><button type="submit" id="submit-buy-rec" class="btn btn-primary btn-action align-center">Buy REC</button></center>
-			  
+				<h2 class="subs-title text-center">Buy REC</h2>
+            
+				<label class="subs-title">
+					<b>Id: </b>&nbsp;
+					  <input type="text" class="buy-rec form-control" id="id-value"></input>
+					<br/>
+				</label>
+	
+				<center style="padding-top:25px"><button type="submit" id="submit-buy-rec" class="btn btn-primary btn-action align-center">Buy REC</button></center>
+				
+				<hr style="width:200px">
 			</div>
 		  </div>
 		  <div class="col-lg-6 col-lg-offset-1 distributor" id="sell-REC-page" style="display: none;">
 			<div style="margin-left:40px;">
-			  <h2 class="subs-title text-center">sell REC</h2>
-			  <label class="subs-title">
-				  <b>Id: </b>&nbsp;
-					<input type="text" class="generate-rec form-control" id="id-value" placeholder="Enter Id here"></input>
-				  <br/>
-				  <br>
-			  </label>
-  
-			  <center style="padding-top:25px"><button type="submit" id="submit-sell-rec" class="btn btn-primary btn-action align-center">Sell REC</button></center>
-			  
+				<h2 class="subs-title text-center">Sell REC</h2>
+             
+				<label class="subs-title">
+					<b>Id: </b>&nbsp;
+					  <input type="text" class="sell-rec form-control" id="id-value"></input>
+					<br/>
+				</label>
+				
+				<center style="padding-top:25px"><button type="submit" id="submit-sell-rec" class="btn btn-primary btn-action align-center">Sell REC</button></center>
+	
+				 <hr style="width:200px">
+			</div>
+		  </div>
+
+		  <div class="col-lg-6 col-lg-offset-1 distributor" id="topup-balance-page" style="display: none;">
+				<div style="margin-left:40px;">
+				<h2 class="subs-title text-center">Top Up Balance</h2>
+		
+				<div class="row" style="padding-top:20px"> 
+					<center><button type="submit" id="submit-top-up" class="btn btn-primary btn-action align-center">Top Up Balance</button></center>
+					<br>
+				</div>
+  			  
 			</div>
 		  </div>
       </div>

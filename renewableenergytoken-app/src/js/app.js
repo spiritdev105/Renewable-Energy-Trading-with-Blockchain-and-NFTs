@@ -50,6 +50,7 @@ App = {
 	document.getElementById('verify-REC-page').style.display = "none";
 	document.getElementById('sell-REC-page').style.display = "none";
 	document.getElementById('buy-REC-page').style.display = "none";
+	document.getElementById('topup-balance-page').style.display = "none";
   },
 
   bindEvents: function () {
@@ -105,6 +106,12 @@ App = {
 		e.preventDefault();
 		App.resetAll(document);
 		document.getElementById('buy-REC-page').style.display = "block";
+	})
+
+	$('#top-up-nav-item').click(function(e) {
+		e.preventDefault();
+		App.resetAll(document);
+		document.getElementById('topup-balance-page').style.display = "block";
 	})
     //$(document).on('click', '#register', function(){ var ad = $('#enter_address').val(); App.handleRegister(ad); });
   },
