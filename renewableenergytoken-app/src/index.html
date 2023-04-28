@@ -24,11 +24,18 @@
       </div>
 	  <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
 		<ul class="nav navbar-nav mr-auto">
+		<li class="nav-item">
+			<a class="nav-link" href="#" id="approve-Distributor-nav-item">Approve Distributor</a>
+		</li>
 		  <li class="nav-item">
 			<a class="nav-link" href="#" id="create-REC-nav-item">Create REC</a>
 		  </li>
 		  <li class="nav-item">
 			<a class="nav-link" href="#" id="approve-User-nav-item">Approve User</a>
+		  </li>
+
+		  <li class="nav-item">
+			<a class="nav-link" href="#" id="self-register-nav-item">Register</a>
 		  </li>
 		</ul>
 	  </nav>
@@ -42,6 +49,59 @@
 
       <div class="row text-center" style="padding-top:20px">
         
+		<div class="col-lg-6 col-lg-offset-1 distributor" id="approve-Distributor-page" style="display: none;">
+			<div>
+				<hr style="width:200px">
+            
+				<h2 class="subs-title text-center">Approve Distributor</h2>
+	
+				<label class="subs-title">
+					<b>Address:</b>&nbsp;
+					  <input type="text" class="approve-user form-control" id="address-value"></input>
+					  &nbsp; <br><br>
+					<br/>
+				</label>
+		
+				<div class="row" style="padding-top:20px"> 
+					  <center><button type="submit" id="submit-approve-distributor" class="btn btn-primary btn-action align-center">Approve Distributor</button></center>
+					  <br>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-6 col-lg-offset-1" id="self-register-page" style="display: none;">
+			<div>
+				<hr style="width:200px">
+            
+				<h2 class="subs-title text-center">Self Register</h2>
+	
+				<label class="subs-title">
+					<b>Id: </b>&nbsp;
+					<input type="text" class="generate-rec form-control" id="id-value" placeholder="Enter Id here"></input>
+					<br/>
+					<br>
+				</label>
+
+
+				<label class="subs-title">
+					<b>Name: </b>&nbsp;
+					<input type="text" class="generate-rec form-control" id="name-value"></input>
+					<br/>
+				</label>
+				
+				<label class="subs-title">
+					<b>Address: </b>&nbsp;
+					<input type="text" class="generate-rec form-control" id="address-value"></input>
+					<br/>
+				</label>
+		
+				<div class="row" style="padding-top:20px"> 
+					  <center><button type="submit" id="submit-self-register" class="btn btn-primary btn-action align-center">Register</button></center>
+					  <br>
+				</div>
+			</div>
+		</div>
+
         <div class="col-lg-6 col-lg-offset-1 distributor" id="create-REC-page" style="display: none;">
           <div style="margin-left:40px;">
             <h2 class="subs-title text-center">Create REC</h2>
@@ -178,6 +238,8 @@
           </div>
         </div>
 
+
+		
       </div>
 
 		<br><hr>

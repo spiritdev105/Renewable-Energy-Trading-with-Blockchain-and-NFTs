@@ -42,7 +42,15 @@ App = {
     });
   },
 
+  resetAll: function(document) {
+	document.getElementById('self-register-page').style.display = "none";
+	document.getElementById('approve-Distributor-page').style.display = "none";
+	document.getElementById('create-REC-page').style.display = "none";
+	document.getElementById('approve-User-page').style.display = "none";
+  },
+
   bindEvents: function () {
+	$(document).on('click', '#submit-approve-distributor', App.handleApproveDistributor);
     $(document).on('click', '#submit-generate-rec', App.handleGenerateREC);
     $(document).on('click', '#submit-approve-user', App.handleApproveUser);
     // $(document).on('click', '#submit-get-all-certificates-of-user', App.handleGetAllCertificatesOfUser);
@@ -52,19 +60,30 @@ App = {
     $(document).on('click', '#submit-sell-rec', App.handleSellREC);
     $(document).on('click', '#submit-buy-rec', App.handleBuyREC);
     $(document).on('click', '#submit-top-up', App.handleTopUpBalance);
+    $(document).on('click', '#submit-self-register', App.handleRegister);
 	
+	$('#approve-Distributor-nav-item').click(function(e) {
+		e.preventDefault();
+		App.resetAll(document);
+		document.getElementById('approve-Distributor-page').style.display = "block";
+	})
+
 	$('#create-REC-nav-item').click(function(e) {
 		e.preventDefault();
-		document.getElementById('create-REC-page').style.display = "none";
-		document.getElementById('approve-User-page').style.display = "none";
+		App.resetAll(document);
 		document.getElementById('create-REC-page').style.display = "block";
 	})
 
 	$('#approve-User-nav-item').click(function(e) {
 		e.preventDefault();
-		document.getElementById('create-REC-page').style.display = "none";
-		document.getElementById('approve-User-page').style.display = "none";
+		App.resetAll(document);
 		document.getElementById('approve-User-page').style.display = "block";
+	})
+
+	$('#self-register-nav-item').click(function(e) {
+		e.preventDefault();
+		App.resetAll(document);
+		document.getElementById('self-register-page').style.display = "block";
 	})
     //$(document).on('click', '#register', function(){ var ad = $('#enter_address').val(); App.handleRegister(ad); });
   },
@@ -106,9 +125,33 @@ App = {
 //     })
 //   },
 
+handleRegister: function(){ 
+	console.log("button clicked");
+	var idValue = $("#id-value").val();
+    var nameValue = $("#name-value").val();
+    var addressValue = $("#address-value").val();
+      App.contracts.vote.deployed().then(function (instance) {
+        appApproveUserInstance = instance;
+
+        return appApproveUserInstance.selfRegister(addressValue, {from : App.currentAccount}); // added from parameter
+      }).then(function (result, err) {
+        if (result) {
+          console.log(result.receipt.status);
+          if (parseInt(result.receipt.status) == 1)
+            toastr.info("User as been Registered", "", { "iconClass": 'toast-info notification0' });
+          else
+            toastr["error"]("Error in approving user. Transaction Reverted!");
+        } else {
+          toastr["error"]("Transaction Failed!");
+        }
+      }).catch(function (err) {
+        toastr["error"]("Transaction Failed!");
+      });
+},
+
   handleGenerateREC: function () {
     event.preventDefault();
-    var idValue = $("id-value").val();
+    var idValue = $("#id-value").val();
     var nameValue = $("#name-value").val();
     var addressValue = $("#address-value").val();
     var quantityValue = $("#quantity-value").val();
@@ -126,6 +169,29 @@ App = {
             toastr.info("You created an REC!", "", { "iconClass": 'toast-info notification0' });
           else
             toastr["error"]("Error in generating REC. Transaction Reverted!");
+        } else {
+          toastr["error"]("Transaction Failed!");
+        }
+      }).catch(function (err) {
+        toastr["error"]("Transaction Failed!");
+      });
+  },
+
+  handleApproveDistributor: function () {
+    console.log("button clicked");
+    var addressValue = $("#approve-Distributor-page #address-value").val();
+
+      App.contracts.vote.deployed().then(function (instance) {
+        appApproveUserInstance = instance;
+
+        return appApproveUserInstance.handleApproveDistributor(addressValue, {from : App.currentAccount}); // added from parameter
+      }).then(function (result, err) {
+        if (result) {
+          console.log(result.receipt.status);
+          if (parseInt(result.receipt.status) == 1)
+            toastr.info("Distributor as been approved", "", { "iconClass": 'toast-info notification0' });
+          else
+            toastr["error"]("Error in approving user. Transaction Reverted!");
         } else {
           toastr["error"]("Transaction Failed!");
         }
