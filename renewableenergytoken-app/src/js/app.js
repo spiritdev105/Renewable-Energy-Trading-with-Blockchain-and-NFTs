@@ -47,6 +47,9 @@ App = {
 	document.getElementById('approve-Distributor-page').style.display = "none";
 	document.getElementById('create-REC-page').style.display = "none";
 	document.getElementById('approve-User-page').style.display = "none";
+	document.getElementById('verify-REC-page').style.display = "none";
+	document.getElementById('sell-REC-page').style.display = "none";
+	document.getElementById('buy-REC-page').style.display = "none";
   },
 
   bindEvents: function () {
@@ -84,6 +87,24 @@ App = {
 		e.preventDefault();
 		App.resetAll(document);
 		document.getElementById('self-register-page').style.display = "block";
+	})
+
+	$('#verify-rec-nav-item').click(function(e) {
+		e.preventDefault();
+		App.resetAll(document);
+		document.getElementById('verify-REC-page').style.display = "block";
+	})
+
+	$('#sell-rec-nav-item').click(function(e) {
+		e.preventDefault();
+		App.resetAll(document);
+		document.getElementById('sell-REC-page').style.display = "block";
+	})
+
+	$('#buy-rec-nav-item').click(function(e) {
+		e.preventDefault();
+		App.resetAll(document);
+		document.getElementById('buy-REC-page').style.display = "block";
 	})
     //$(document).on('click', '#register', function(){ var ad = $('#enter_address').val(); App.handleRegister(ad); });
   },
