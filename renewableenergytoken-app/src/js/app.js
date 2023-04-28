@@ -106,6 +106,9 @@ App = {
         return generateRECInstance.getUserRole(App.currentAccount, {from:App.currentAccount});
 	  }).then(function(result) {
 		App.currentAccountRole = result;
+		if (App.currentAccountRole == 'none') {
+			document.getElementById("self-register-nav-item-li").style.display = "block";
+		}
 		jQuery('#current_account_role').text(App.currentAccountRole);
 	  })
   },
@@ -129,11 +132,11 @@ handleRegister: function(){
 	console.log("button clicked");
 	var idValue = $("#id-value").val();
     var nameValue = $("#name-value").val();
-    var addressValue = $("#address-value").val();
+    var addressValue = App.currentAccount;
       App.contracts.vote.deployed().then(function (instance) {
         appApproveUserInstance = instance;
 
-        return appApproveUserInstance.selfRegister(addressValue, {from : App.currentAccount}); // added from parameter
+        return appApproveUserInstance.selfRegister(idValue,nameValue ,addressValue, {from : App.currentAccount}); // added from parameter
       }).then(function (result, err) {
         if (result) {
           console.log(result.receipt.status);
@@ -184,7 +187,7 @@ handleRegister: function(){
       App.contracts.vote.deployed().then(function (instance) {
         appApproveUserInstance = instance;
 
-        return appApproveUserInstance.handleApproveDistributor(addressValue, {from : App.currentAccount}); // added from parameter
+        return appApproveUserInstance.approveDistributor(addressValue, {from : App.currentAccount}); // added from parameter
       }).then(function (result, err) {
         if (result) {
           console.log(result.receipt.status);
