@@ -251,8 +251,8 @@ handleRegister: function(){
   handleGenerateREC: function () {
     event.preventDefault();
     //var idValue = $("#id-value").val();
-    var nameValue = $("#name-value").val();
-    var addressValue = $("#address-value").val();
+    var nameValue = $("#create-rec-name-value").val();
+    var addressValue = $("#create-rec-address-value").val();
     var quantityValue = $("#quantity-value").val();
     var priceValue = $("#price-value").val();
     // removed getting account part as we already have App.currentAccount

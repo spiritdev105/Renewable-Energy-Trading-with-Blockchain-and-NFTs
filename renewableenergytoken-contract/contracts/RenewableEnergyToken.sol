@@ -55,7 +55,7 @@ contract RenewableEnergyToken is ERC721 {
     }
 
     modifier onlyDistributor() {
-        require(users[msg.sender].isDistributor, "Only distributor can call this");
+        require(msg.sender == owner || users[msg.sender].isDistributor, "Only distributor can call this");
         _;
     }
 
@@ -125,7 +125,7 @@ contract RenewableEnergyToken is ERC721 {
 
     //REC functions
     function generateREC(string memory name, uint quantity, uint price, address sellerAddress) public onlyDistributor payable {
-        require(bytes(name).length > 0 && quantity > 0 && price > 0, "Invalid input parameters");
+        require(bytes(name).length > 0 && quantity > 0 && price > 0 && sellerAddress!=address(0), "Invalid input parameters");
 
         recs[recCount] =  REC(recCount, name, quantity, price, Status.Available);
         
