@@ -38,15 +38,65 @@ App = {
       App.currentAccount = web3.eth.coinbase;
       jQuery('#current_account').text(App.currentAccount);
 	  App.getUserRole();
+	  
       return App.bindEvents();
     });
   },
 
+  resetNav: function(document) {
+	document.getElementById('get-all-certificates-nav-item-li').style.display = "none";
+	document.getElementById('get-certificates-of-user-nav-item-li').style.display = "none";
+	document.getElementById('get-certificate-nav-item-li').style.display = "none";
+	document.getElementById('approve-distributor-nav-item-li').style.display = "none";
+	document.getElementById('create-rec-nav-item-li').style.display = "none";
+	document.getElementById('approve-user-nav-item-li').style.display = "none";
+	document.getElementById('self-register-nav-item-li').style.display = "none";
+	document.getElementById('verify-rec-nav-item-li').style.display = "none";
+	document.getElementById('sell-rec-nav-item-li').style.display = "none";
+	document.getElementById('buy-rec-nav-item-li').style.display = "none";
+	document.getElementById('top-up-nav-item-li').style.display = "none";
+
+	if (App.currentAccountRole == 'none') {
+		document.getElementById("self-register-nav-item-li").style.display = "block";
+	} else if (App.currentAccountRole == 'owner') {
+		document.getElementById('get-all-certificates-nav-item-li').style.display = "block";
+		document.getElementById('get-certificates-of-user-nav-item-li').style.display = "block";
+		document.getElementById('get-certificate-nav-item-li').style.display = "block";
+		document.getElementById('approve-distributor-nav-item-li').style.display = "block";
+		document.getElementById('verify-REC-page').style.display = "block";
+		document.getElementById('create-rec-nav-item-li').style.display = "block";
+		document.getElementById('approve-user-nav-item-li').style.display = "block";
+		document.getElementById('self-register-nav-item-li').style.display = "block";
+		document.getElementById('verify-rec-nav-item-li').style.display = "block";
+		document.getElementById('sell-rec-nav-item-li').style.display = "block";
+		document.getElementById('buy-rec-nav-item-li').style.display = "block";
+		document.getElementById('top-up-nav-item-li').style.display = "block";
+	} else if (App.currentAccountRole == 'distributor') {
+		document.getElementById('get-all-certificates-nav-item-li').style.display = "block";
+		document.getElementById('get-certificates-of-user-nav-item-li').style.display = "block";
+		document.getElementById('get-certificate-nav-item-li').style.display = "block";
+		document.getElementById('create-rec-nav-item-li').style.display = "block";
+		document.getElementById('approve-user-nav-item-li').style.display = "block";
+		document.getElementById('verify-rec-nav-item-li').style.display = "block";
+		document.getElementById('sell-rec-nav-item-li').style.display = "block";
+		document.getElementById('buy-rec-nav-item-li').style.display = "block";
+		document.getElementById('top-up-nav-item-li').style.display = "block";
+	} else if (App.currentAccountRole == 'registered') {
+		document.getElementById('get-all-certificates-nav-item-li').style.display = "block";
+		document.getElementById('get-certificates-of-user-nav-item-li').style.display = "block";
+		document.getElementById('get-certificate-nav-item-li').style.display = "block";
+		document.getElementById('verify-rec-nav-item-li').style.display = "block";
+		document.getElementById('sell-rec-nav-item-li').style.display = "block";
+		document.getElementById('buy-rec-nav-item-li').style.display = "block";
+		document.getElementById('top-up-nav-item-li').style.display = "block";
+	}
+  },
+
   resetAll: function(document) {
 	document.getElementById('self-register-page').style.display = "none";
-	document.getElementById('approve-Distributor-page').style.display = "none";
-	document.getElementById('create-REC-page').style.display = "none";
-	document.getElementById('approve-User-page').style.display = "none";
+	document.getElementById('approve-distributor-page').style.display = "none";
+	document.getElementById('create-rec-page').style.display = "none";
+	document.getElementById('approve-user-page').style.display = "none";
 	document.getElementById('verify-REC-page').style.display = "none";
 	document.getElementById('sell-REC-page').style.display = "none";
 	document.getElementById('buy-REC-page').style.display = "none";
@@ -69,22 +119,22 @@ App = {
     $(document).on('click', '#submit-top-up', App.handleTopUpBalance);
     $(document).on('click', '#submit-self-register', App.handleRegister);
 	
-	$('#approve-Distributor-nav-item').click(function(e) {
+	$('#approve-distributor-nav-item').click(function(e) {
 		e.preventDefault();
 		App.resetAll(document);
-		document.getElementById('approve-Distributor-page').style.display = "block";
+		document.getElementById('approve-distributor-page').style.display = "block";
 	})
 
-	$('#create-REC-nav-item').click(function(e) {
+	$('#create-rec-nav-item').click(function(e) {
 		e.preventDefault();
 		App.resetAll(document);
-		document.getElementById('create-REC-page').style.display = "block";
+		document.getElementById('create-rec-page').style.display = "block";
 	})
 
-	$('#approve-User-nav-item').click(function(e) {
+	$('#approve-user-nav-item').click(function(e) {
 		e.preventDefault();
 		App.resetAll(document);
-		document.getElementById('approve-User-page').style.display = "block";
+		document.getElementById('approve-user-page').style.display = "block";
 	})
 
 	$('#self-register-nav-item').click(function(e) {
@@ -155,10 +205,8 @@ App = {
         return generateRECInstance.getUserRole(App.currentAccount, {from:App.currentAccount});
 	  }).then(function(result) {
 		App.currentAccountRole = result;
-		if (App.currentAccountRole == 'none') {
-			document.getElementById("self-register-nav-item-li").style.display = "block";
-		}
 		jQuery('#current_account_role').text(App.currentAccountRole);
+		App.resetNav(document);
 	  })
   },
 
@@ -231,7 +279,7 @@ handleRegister: function(){
 
   handleApproveDistributor: function () {
     console.log("button clicked");
-    var addressValue = $("#approve-Distributor-page #address-value").val();
+    var addressValue = $("#approve-distributor-page #address-value").val();
 
       App.contracts.vote.deployed().then(function (instance) {
         appApproveUserInstance = instance;
