@@ -66,7 +66,6 @@ App = {
 		document.getElementById('verify-REC-page').style.display = "block";
 		document.getElementById('create-rec-nav-item-li').style.display = "block";
 		document.getElementById('approve-user-nav-item-li').style.display = "block";
-		document.getElementById('self-register-nav-item-li').style.display = "block";
 		document.getElementById('verify-rec-nav-item-li').style.display = "block";
 		document.getElementById('sell-rec-nav-item-li').style.display = "block";
 		document.getElementById('buy-rec-nav-item-li').style.display = "block";
