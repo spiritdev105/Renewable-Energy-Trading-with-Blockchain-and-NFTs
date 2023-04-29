@@ -327,7 +327,7 @@ handleRegister: function(){
     console.log("button clicked");
     App.contracts.vote.deployed().then(function (instance) {
       getAllCertificatesInstance = instance;
-      return getAllCertificatesInstance.getAllGertificates({from:App.currentAccount});  // added from parameter
+      return getAllCertificatesInstance.getAllCertificates({from:App.currentAccount});  // added from parameter
     }).then(function (res) {
       console.log(res);
         if (result) {
@@ -349,7 +349,7 @@ handleRegister: function(){
     var idValue = $("#id-value").val();
     App.contracts.vote.deployed().then(function (instance) {
       getCertificateInstance = instance;
-      return getCertificateInstance.getGertificate(idValue, {from:App.currentAccount});  // added from parameter
+      return getCertificateInstance.getCertificate(idValue, {from:App.currentAccount});  // added from parameter
     }).then(function (res) {
       console.log(res);
         if (result) {
@@ -371,7 +371,7 @@ handleRegister: function(){
     var addressValue = $("#address-value").val();
     App.contracts.vote.deployed().then(function (instance) {
       getCertificatesOfUserInstance = instance;
-      return getCertificatesOfUserInstance.getGertificatesOfUser(addressValue, {from:App.currentAccount});  // added from parameter
+      return getCertificatesOfUserInstance.getCertificatesOfUser(addressValue, {from:App.currentAccount});  // added from parameter
     }).then(function (res) {
       console.log(res);
         if (result) {
