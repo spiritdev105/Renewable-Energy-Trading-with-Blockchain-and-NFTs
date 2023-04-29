@@ -17,20 +17,28 @@ contract RenewableEnergyToken is ERC721 {
     }
     
     struct REC {
-        string id;
+        uint id;
         string name;
         uint quantity;
         uint price;
-        address sellerAddress;
         Status status;
     }
+
+    uint public recCount;
+    mapping(uint => REC) recs;
+    mapping(uint => address) private recOwner;
+    mapping (address => uint256) private ownedAssetsCount;    
+    mapping (uint256 => address) public assetApprovals;
 
     address[]  addressList;
     
     enum Status {Available, Sold}
     
     mapping(address => User) users;
-    mapping(string => REC) recs;
+
+    //Events
+    //event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
+    //event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
 
     constructor() ERC721("RenewableEnergyToken", "RET") {
         owner = msg.sender;
@@ -63,6 +71,69 @@ contract RenewableEnergyToken is ERC721 {
 		}
 	}
 
+    //ERC721 methods
+    /*
+    function ownerOf(uint256 assetId) public view returns (address) {
+        address owner = recOwner[assetId];
+        require(owner != address(0), "NoAssetExists");
+        return owner;
+    }
+    
+    function transferFrom(address payable from, uint256 recId) public payable {
+        require(isApprovedOrOwner(msg.sender, recId), "NotAnApprovedOwner");
+        require(ownerOf(rectId) == from, "NotTheassetOwner");
+        clearApproval(recId,getApproved(recId));
+        ownedAssetsCount[from]--;
+        ownedAssetsCount[msg.sender]++;
+        assetOwner[assetId] = msg.sender;
+        from.transfer(assetMap[recId].price * 1000000000000000000);
+        emit Transfer(from, msg.sender, recId);
+    }
+
+    function approve(address to,uint256 assetId) public {
+        address owner = ownerOf(assetId);
+        require(to != owner, "CurrentOwnerApproval");
+        require(msg.sender == owner,"NotTheAssetOwner");
+        assetApprovals[assetId] = to;
+        emit Approval(owner, to, assetId);
+    }
+
+    function getApproved(uint256 assetId) public view returns (address) {
+        require(exists(assetId), "ERC721: approved query for nonexistent token");
+        return assetApprovals[assetId];
+    }
+    */
+
+    // Function used internally by other methods
+    function mint(address to, uint256 recId) internal {
+        require(to != address(0), "ZeroAddressMiniting");
+        require(!exists(recId), "AlreadyMinted");
+        recOwner[recId] = to;
+        ownedAssetsCount[to]++;
+        emit Transfer(address(0), to, recId);
+    }
+
+    function exists(uint256 assetId) internal view returns (bool) {
+        return recOwner[assetId] != address(0);
+    }
+
+    function isApprovedOrOwner(address spender, uint256 assetId) internal view returns (bool) {
+        require(exists(assetId), "ERC721: operator query for nonexistent token");
+        address owner = ownerOf(assetId);
+        return (spender == owner || getApproved(assetId) == spender);
+    }
+
+    //REC functions
+    function generateREC(string memory name, uint quantity, uint price, address sellerAddress) public onlyDistributor {
+        require(bytes(name).length > 0 && quantity > 0 && price > 0, "Invalid input parameters");
+
+        recs[recCount] =  REC(recCount, name, quantity, price, Status.Available);
+        
+        mint(sellerAddress,recCount);
+        recCount = recCount+1;
+    }
+
+    /*
     function getCertificatesOfUser() public view onlyRegistered returns (REC[] memory) {
         return users[msg.sender].certificates;
     }
@@ -88,21 +159,15 @@ contract RenewableEnergyToken is ERC721 {
 
     function getCertificate(string memory id) public view onlyRegistered returns (string memory, string memory, uint, uint, address, Status) {
         REC memory rec = recs[id];
-        return (rec.id, rec.name, rec.quantity, rec.price, rec.sellerAddress, rec.status);
+        return (id, rec.name, rec.quantity, rec.price, rec.status);
     }
+    */
 
-    function generateREC(string memory id, string memory name, uint quantity, uint price, address sellerAddress) public onlyDistributor {
-        require(bytes(id).length > 0 && bytes(name).length > 0 && quantity > 0 && price > 0 && (sellerAddress) != address(0), "Invalid input parameters");
-
-        REC memory rec = REC(id, name, quantity, price, sellerAddress, Status.Available);
-        recs[id] = rec;
-    }
-
-    function verifyREC(string memory id) public view onlyRegistered returns (bool) {
-        require(bytes(id).length > 0, "Invalid input parameter");
+    function verifyREC(uint id) public view onlyRegistered returns (bool) {
+        require(id>=0, "Invalid input parameter");
 
         REC storage rec = recs[id];
-        require(bytes(rec.id).length > 0, "REC not found");
+        require(id<recCount, "REC not found");
 
         User storage user = users[msg.sender];
         require(user.balance >= rec.price, "Insufficient balance");
@@ -110,31 +175,31 @@ contract RenewableEnergyToken is ERC721 {
     }
 
 
-    function buyREC(string memory id) public onlyRegistered payable {
+    function buyREC(uint id) public onlyRegistered payable {
         REC storage rec = recs[id];
-        require(bytes(rec.id).length > 0, "REC not found");
+        require(id>=0 && id<recCount, "REC not found");
         require(rec.status == Status.Available, "REC not available for purchase");
 
         User storage buyer = users[msg.sender];
         require(buyer.balance >= rec.price, "Insufficient balance");
 
-        User storage seller = users[rec.sellerAddress];
+        User storage seller = users[recOwner[id]];
         seller.balance += rec.price;
 
         buyer.balance -= rec.price;
         buyer.certificates.push(rec);
         rec.status = Status.Sold;
-        rec.sellerAddress = msg.sender;
+        recOwner[id] = msg.sender;
     }
 
-    function sellREC(string memory id, uint price) public onlyRegistered {
+    function sellREC(uint id, uint price) public onlyRegistered {
         REC storage rec = recs[id];
-        require(bytes(rec.id).length > 0, "REC not found");
+        require(id>=0 && id<recCount, "REC not found");
         require(rec.status == Status.Available, "Cannot update price for sold REC");
-        require(rec.sellerAddress == address(0) || rec.sellerAddress == msg.sender, "Only seller can update price");
+        require(recOwner[id] == address(0) || recOwner[id] == msg.sender, "Only seller can update price");
 
         rec.price = price;
-        rec.sellerAddress = msg.sender;
+        recOwner[id] = msg.sender;
         rec.status = Status.Available;
     }
 

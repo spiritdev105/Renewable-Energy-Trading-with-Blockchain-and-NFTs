@@ -232,7 +232,7 @@ handleRegister: function(){
       App.contracts.vote.deployed().then(function (instance) {
         appApproveUserInstance = instance;
 
-        return appApproveUserInstance.selfRegister(idValue,nameValue ,addressValue, {from : App.currentAccount}); // added from parameter
+        return appApproveUserInstance.selfRegister(idValue, nameValue ,addressValue, {from : App.currentAccount}); // added from parameter
       }).then(function (result, err) {
         if (result) {
           console.log(result.receipt.status);
@@ -250,7 +250,7 @@ handleRegister: function(){
 
   handleGenerateREC: function () {
     event.preventDefault();
-    var idValue = $("#id-value").val();
+    //var idValue = $("#id-value").val();
     var nameValue = $("#name-value").val();
     var addressValue = $("#address-value").val();
     var quantityValue = $("#quantity-value").val();
@@ -260,7 +260,7 @@ handleRegister: function(){
       App.contracts.vote.deployed().then(function (instance) {
         generateRECInstance = instance;
 
-        return generateRECInstance.generateREC(idValue, nameValue, addressValue, quantityValue, { value: web3.toWei(priceValue, "ether"), from: App.currentAccount }); // added from parameter
+        return generateRECInstance.generateREC(nameValue, quantityValue, priceValue, addressValue, {from: App.currentAccount}); // added from parameter
       }).then(function (result, err) {
         if (result) {
           console.log(result.receipt.status);
@@ -371,7 +371,7 @@ handleRegister: function(){
     var addressValue = $("#address-value").val();
     App.contracts.vote.deployed().then(function (instance) {
       getCertificatesOfUserInstance = instance;
-      return getCertificatesOfUserInstance.getCertificatesOfUser(addressValue, {from:App.currentAccount});  // added from parameter
+      return getCertificatesOfUserInstance.getCertificatesOfUser(addressValue, {value:, from:App.currentAccount});  // added from parameter
     }).then(function (res) {
       console.log(res);
         if (result) {
