@@ -124,7 +124,7 @@ contract RenewableEnergyToken is ERC721 {
     }
 
     //REC functions
-    function generateREC(string memory name, uint quantity, uint price, address sellerAddress) public onlyDistributor {
+    function generateREC(string memory name, uint quantity, uint price, address sellerAddress) public onlyDistributor payable {
         require(bytes(name).length > 0 && quantity > 0 && price > 0, "Invalid input parameters");
 
         recs[recCount] =  REC(recCount, name, quantity, price, Status.Available);

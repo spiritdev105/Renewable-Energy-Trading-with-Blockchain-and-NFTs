@@ -260,7 +260,7 @@ handleRegister: function(){
       App.contracts.vote.deployed().then(function (instance) {
         generateRECInstance = instance;
 
-        return generateRECInstance.generateREC(nameValue, quantityValue, priceValue, addressValue, {from: App.currentAccount}); // added from parameter
+        return generateRECInstance.generateREC(nameValue, quantityValue, priceValue, addressValue, {value:web3.toWei(priceValue, 'ether'), from : App.currentAccount}); // added from parameter
       }).then(function (result, err) {
         if (result) {
           console.log(result.receipt.status);
@@ -371,7 +371,7 @@ handleRegister: function(){
     var addressValue = $("#address-value").val();
     App.contracts.vote.deployed().then(function (instance) {
       getCertificatesOfUserInstance = instance;
-      return getCertificatesOfUserInstance.getCertificatesOfUser(addressValue, {value:, from:App.currentAccount});  // added from parameter
+      return getCertificatesOfUserInstance.getCertificatesOfUser(addressValue, {from:App.currentAccount});  // added from parameter
     }).then(function (res) {
       console.log(res);
         if (result) {
