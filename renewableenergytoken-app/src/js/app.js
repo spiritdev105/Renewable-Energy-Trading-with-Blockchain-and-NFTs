@@ -60,7 +60,7 @@ App = {
 	document.getElementById('sell-rec-nav-item-li').style.display = "none";
 	document.getElementById('buy-rec-nav-item-li').style.display = "none";
 	document.getElementById('top-up-nav-item-li').style.display = "none";
-	document.getElementById('apreciate-depreciate-nav-text').text = "";
+	jQuery('#apreciate-depreciate-nav-text').text("");
 	document.getElementById('appreciate-depreciate-form').style.display = "none";
 
 
@@ -78,7 +78,7 @@ App = {
 		document.getElementById('sell-rec-nav-item-li').style.display = "block";
 		document.getElementById('buy-rec-nav-item-li').style.display = "block";
 		document.getElementById('top-up-nav-item-li').style.display = "block";
-		document.getElementById('apreciate-depreciate-nav-text').text = "/ Appreciate / Depreciate";
+		jQuery('#apreciate-depreciate-nav-text').text("/ Appreciate / Depreciate");
 		document.getElementById('appreciate-depreciate-form').style.display = "block";
 	} else if (App.currentAccountRole == 'distributor') {
 		document.getElementById('get-all-certificates-nav-item-li').style.display = "block";
@@ -91,7 +91,7 @@ App = {
 		document.getElementById('buy-rec-nav-item-li').style.display = "block";
 		document.getElementById('top-up-nav-item-li').style.display = "block";
 		document.getElementById('get-all-certificates-page').style.display = "block";
-		document.getElementById('apreciate-depreciate-nav-text').text = "/ Appreciate / Depreciate";
+		jQuery('#apreciate-depreciate-nav-text').text("/ Appreciate / Depreciate");
 		document.getElementById('appreciate-depreciate-form').style.display = "block";
 	} else if (App.currentAccountRole == 'registered') {
 		document.getElementById('get-all-certificates-nav-item-li').style.display = "block";
@@ -102,7 +102,6 @@ App = {
 		document.getElementById('buy-rec-nav-item-li').style.display = "block";
 		document.getElementById('top-up-nav-item-li').style.display = "block";
 		document.getElementById('get-all-certificates-page').style.display = "block";
-
 	}
   },
 
@@ -118,7 +117,6 @@ App = {
 	document.getElementById('get-certificates-of-user-page').style.display = "none";
 	document.getElementById('get-all-certificates-page').style.display = "none";
 	document.getElementById('get-certificate-page').style.display = "none";
-	document.getElementById('appreciate-depreciate-form').style.display = "none";
   },
 
   bindEvents: function () {
