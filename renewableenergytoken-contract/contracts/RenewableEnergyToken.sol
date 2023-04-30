@@ -176,7 +176,7 @@ contract RenewableEnergyToken is ERC721 {
     function approveDistributor(address userAddress) public onlyOwner {
         User storage user = users[userAddress];
         require(bytes(user.id).length > 0, "User not found");
-        require(!user.isRegistered, "User is already Distributor");
+        require(!user.isDistributor, "User is already Distributor");
 
         user.isDistributor = true;
         user.isRegistered = true;

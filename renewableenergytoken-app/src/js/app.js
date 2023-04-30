@@ -59,7 +59,7 @@ App = {
 	document.getElementById('verify-rec-nav-item-li').style.display = "none";
 	document.getElementById('sell-rec-nav-item-li').style.display = "none";
 	document.getElementById('buy-rec-nav-item-li').style.display = "none";
-	document.getElementById('top-up-nav-item-li').style.display = "none";
+	// document.getElementById('top-up-nav-item-li').style.display = "none";
 	jQuery('#apreciate-depreciate-nav-text').text("");
 	document.getElementById('appreciate-depreciate-form').style.display = "none";
 
@@ -77,7 +77,7 @@ App = {
 		document.getElementById('verify-rec-nav-item-li').style.display = "block";
 		document.getElementById('sell-rec-nav-item-li').style.display = "block";
 		document.getElementById('buy-rec-nav-item-li').style.display = "block";
-		document.getElementById('top-up-nav-item-li').style.display = "block";
+		// document.getElementById('top-up-nav-item-li').style.display = "block";
 		jQuery('#apreciate-depreciate-nav-text').text("/ Appreciate / Depreciate");
 		document.getElementById('appreciate-depreciate-form').style.display = "block";
 	} else if (App.currentAccountRole == 'distributor') {
@@ -89,7 +89,7 @@ App = {
 		document.getElementById('verify-rec-nav-item-li').style.display = "block";
 		document.getElementById('sell-rec-nav-item-li').style.display = "block";
 		document.getElementById('buy-rec-nav-item-li').style.display = "block";
-		document.getElementById('top-up-nav-item-li').style.display = "block";
+		// document.getElementById('top-up-nav-item-li').style.display = "block";
 		document.getElementById('get-all-certificates-page').style.display = "block";
 		jQuery('#apreciate-depreciate-nav-text').text("/ Appreciate / Depreciate");
 		document.getElementById('appreciate-depreciate-form').style.display = "block";
@@ -100,7 +100,7 @@ App = {
 		document.getElementById('verify-rec-nav-item-li').style.display = "block";
 		document.getElementById('sell-rec-nav-item-li').style.display = "block";
 		document.getElementById('buy-rec-nav-item-li').style.display = "block";
-		document.getElementById('top-up-nav-item-li').style.display = "block";
+		// document.getElementById('top-up-nav-item-li').style.display = "block";
 		document.getElementById('get-all-certificates-page').style.display = "block";
 	}
   },
