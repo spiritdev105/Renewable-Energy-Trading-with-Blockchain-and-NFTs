@@ -302,7 +302,7 @@ handleRegister: function(){
 	App.contracts.vote.methods.approveDistributor(addressValue).send({from : App.currentAccount[0]})
 	.on('receipt',(receipt)=>{
 		if ((receipt.status) ) {
-			toastr.info("Distributor as been approved", "", { "iconClass": 'toast-info notification0' });
+			toastr.info("Distributor has been approved", "", { "iconClass": 'toast-info notification0' });
 			$('#approve-distributor-page').find('input:text').val('');
 				$('#approve-distributor-page').find('select').val('');
 		} else
@@ -322,7 +322,7 @@ handleRegister: function(){
       App.contracts.vote.methods.approveUser(addressValue).send({from : App.currentAccount[0]})
 		.on('receipt',(receipt)=>{
 			if ((receipt.status) ) {
-            	toastr.info("User as been approved", "", { "iconClass": 'toast-info notification0' });
+            	toastr.info("User has been approved", "", { "iconClass": 'toast-info notification0' });
 				$('#approve-user-page').find('input:text').val('');
 				$('#approve-user-page').find('select').val('');
 			} else
@@ -465,7 +465,7 @@ handleRegister: function(){
       .send(option)
         .on('receipt',(receipt)=>{
 			if (receipt.status)
-            toastr.info("REC as been verified", "", { "iconClass": 'toast-info notification0' });
+            toastr.info("REC has been verified", "", { "iconClass": 'toast-info notification0' });
           else
             toastr["error"]("Error in verifing the REC. Transaction Reverted!");
         })
