@@ -30,7 +30,7 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 			<li class="nav-item" id="get-all-certificates-nav-item-li" style="display:none">
-				<a class="nav-link" href="#" id="get-all-certificates-nav-item">Get All Certificates</a>
+				<a class="nav-link active" href="#" id="get-all-certificates-nav-item">Get All Certificates</a>
 			</li>
 			<li class="nav-item" id="get-certificates-of-user-nav-item-li" style="display:none">
 				<a class="nav-link" href="#" id="get-certificates-of-user-nav-item">Get Certificates Of User</a>
@@ -89,7 +89,7 @@
 	
 				<label class="subs-title">
 					<b>Address:</b>&nbsp;
-					  <input type="text" class="approve-user form-control" id="address-value"></input>
+					<select id='approve-distributor-address-value' class="approve-user form-control"></select>
 					  &nbsp; <br><br>
 					<br/>
 				</label>
@@ -149,7 +149,7 @@
             
             <label class="subs-title">
                 <b>Address: </b>&nbsp;
-                  <input type="text" class="generate-rec form-control" id="create-rec-address-value"></input>
+					<select id='create-rec-address-value' class="generate-rec form-control"></select>
                 <br/>
             </label>
 
@@ -178,7 +178,7 @@
 	
 				<label class="subs-title">
 					<b>Address:</b>&nbsp;
-					  <input type="text" class="approve-user form-control" id="approve-user-address-value"></input>
+					<select id='approve-user-address-value' class="approve-user form-control"></select>
 					  &nbsp; <br><br>
 					<br/>
 				</label>
@@ -191,7 +191,7 @@
 		</div>
         <div class="col-lg-12 registered-user" id="get-certificates-of-user-page" style="display: none;">
           <div style="margin-left:40px;">
-            <h2 class="subs-title text-center">Get Certificates of User</h2>
+            <!-- <h2 class="subs-title text-center">Get Certificates of User</h2> -->
             <!-- <label class="subs-title">
                 <b>Address: </b>&nbsp;
                   <input type="text" class="get-certificates-of-user form-control" id="address-value" placeholder="Enter Id here"></input>
@@ -266,7 +266,7 @@
 
 				<label class="subs-title">
 					 <b>Id: </b>&nbsp;
-					   <input type="text" class="get-rec form-control" id="id-value"></input>
+					   <input type="text" class="get-rec form-control" id="verify-rec-id-value"></input>
 					 <br/>
 				 </label>
 							 
@@ -280,8 +280,10 @@
 				<h2 class="subs-title text-center">Buy REC</h2>
             
 				<div class="form-group">
-					<label for="from_address">From</label>
-					<select id='from_address' class="form-control"></select>
+					<label class="subs-title" for="from_address">
+						<b>From: </b>&nbsp;
+						<select id='from_address' class="form-control"></select>
+					</label>
 				  </div>
 				<div class="form-group">
 				<label class="subs-title">
@@ -300,8 +302,10 @@
 			<div style="margin-left:40px;">
 				<h2 class="subs-title text-center">Sell REC</h2>
 				<div class="form-group">
-					<label for="sell-rec-to_address">To</label>
-					<select id='sell-rec-to_address' class="form-control"></select>
+					<label class="subs-title" for="sell-rec-to_address">
+						<b>To: </b>&nbsp;
+						<select id='sell-rec-to_address' class="form-control"></select>
+					</label>
 				  </div>
 				  <div class="form-group">
 				<label class="subs-title">

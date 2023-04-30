@@ -50,7 +50,7 @@ contract RenewableEnergyToken is ERC721 {
     }
 
     modifier onlyRegistered() {
-        require(users[msg.sender].isRegistered, "Only registered users can call this");
+        require(msg.sender == owner || users[msg.sender].isRegistered, "Only registered users can call this");
         _;
     }
 
@@ -67,8 +67,12 @@ contract RenewableEnergyToken is ERC721 {
 		} else if (users[user].isRegistered) {
 			return "registered";
 		} else {
-			return "none";
-		}
+			 User storage userObj = users[user];
+			if (bytes(userObj.id).length > 0)
+				return "not yet verified";
+			else 
+				return "none";
+			}
 	}
 
     //ERC721 methods

@@ -5,6 +5,10 @@
     Author URL: https://bootstrapmade.com
 */
 
+.nav-item a.active {
+	color: red;
+  }
+  
 body {
 	line-height: 1.2;
     height: 100%;
