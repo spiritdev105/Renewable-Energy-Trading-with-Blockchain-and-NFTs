@@ -185,7 +185,7 @@ contract RenewableEnergyToken is ERC721 {
         require(id<recCount, "REC not found");
 
         User storage user = users[msg.sender];
-        require(user.balance >= rec.price, "Insufficient balance");
+        require(address(this).balance >= rec.price, "Insufficient balance");
         return true;
     }
 
@@ -244,8 +244,9 @@ contract RenewableEnergyToken is ERC721 {
 
         user.id = id;
         user.name = name;
-        user.balance = 0; 
+        user.balance = address(this).balance; 
         user.isDistributor = false;
+		user.isRegistered = false;
         addressList.push((userAddress));
     }
 

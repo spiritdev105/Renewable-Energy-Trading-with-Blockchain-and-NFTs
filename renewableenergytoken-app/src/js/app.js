@@ -363,11 +363,11 @@ handleRegister: function(){
 	console.log("button clicked");
 	var idValue = $("#get-certificate-pageid-value").val();
 
-	App.contracts.vote.methods.getCertificate(idValue).call().then((id, name, quantity, price, address, status)=>{  
-		document.getElementById("get-certificate-page-name-value").value = name;
-		document.getElementById("get-certificate-page-address-value").value = address;
-		document.getElementById("get-certificate-page-quantity-value").value = quantity;
-		document.getElementById("get-certificate-page-price-value").value = price;
+	App.contracts.vote.methods.getCertificate(idValue).call({from:App.currentAccount[0]}).then((rec)=>{  
+		document.getElementById("get-certificate-page-name-value").value = rec[1];
+		document.getElementById("get-certificate-page-address-value").value = rec[4];
+		document.getElementById("get-certificate-page-quantity-value").value = rec[2];
+		document.getElementById("get-certificate-page-price-value").value = rec[3];
 		toastr.info("Fetched the certificate with the given id", "", { "iconClass": 'toast-info notification0' });
 	}).catch(function (err) {
         toastr["error"]("Transaction Failed!");
@@ -488,9 +488,11 @@ handleRegister: function(){
       .send(option)
         .on('receipt',(receipt)=>{
 			console.log(receipt)
-		  if (receipt.status)
+		  if (receipt.status) {
             toastr.info("REC has been sent to Buyer", "", { "iconClass": 'toast-info notification0' });
-          else
+			location.reload()
+      		App.handleGetAllCertificates();
+		  }else
             toastr["error"]("Error in selling the REC. Transaction Reverted!");
         })
       .on('transactionHash',(hash)=>{
@@ -537,7 +539,8 @@ handleRegister: function(){
   
   handleTopUpBalance: function () {
     console.log("button clicked");
-    App.contracts.vote.methods.topUpBalanceREC().send({from:App.currentAccount[0]})
+    var priceValue = $("#top-up-price-value").val();
+    App.contracts.vote.methods.topupBalance().send({from:App.currentAccount[0], value: priceValue})
 	.on('receipt',(receipt)=>{
         if (receipt) {
           if (receipt.status)
