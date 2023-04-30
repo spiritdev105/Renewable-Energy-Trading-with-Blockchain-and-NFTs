@@ -206,7 +206,7 @@ App = {
           option+='<option>'+accounts[i]+'</option>'; 
         }
         jQuery('#asset_owner').append(option);
-        jQuery('#to_address').append(option);
+        jQuery('#sell-rec-to_address').append(option);
         jQuery('#from_address').append(option);
       });
   },
