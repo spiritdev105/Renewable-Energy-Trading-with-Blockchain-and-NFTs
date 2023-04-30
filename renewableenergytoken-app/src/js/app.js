@@ -345,7 +345,7 @@ handleRegister: function(){
 								var card='';
 								if(res==0){
 								res='None'
-								card='<div class="col-lg-3"><div class="card text-white bg-primary">'+
+								card='<div class="col-lg-3  mb-4"><div class="card text-white bg-primary">'+
 								'<div class="card-header">'+ r.name+'</div>' +
 								'<div class="card-body">'+
 								'<h6 class="card-title">Asset # '+r.id+'</h6>'+
@@ -353,7 +353,7 @@ handleRegister: function(){
 								'<div class="card-footer">'+'<small><b>Owner:</b> '+result+'<br><b>Approved:</b> '+res+'</small></div>' +
 								'</div></div>';         
 								} else {
-									card='<div class="col-lg-3"><div class="card text-white bg-success">'+
+									card='<div class="col-lg-3  mb-4"><div class="card text-white bg-success">'+
 									'<div class="card-header">'+ r.name+'</div>' +
 									'<div class="card-body">'+
 									'<h6 class="card-title">Asset # '+r.id+'</h6>'+
@@ -408,7 +408,7 @@ handleRegister: function(){
 		document.getElementById("get-certificate-page-address-value").value = rec[4];
 		document.getElementById("get-certificate-page-quantity-value").value = rec[2];
 		document.getElementById("get-certificate-page-price-value").value = rec[3];
-		toastr.info("Fetched the certificate with the given id", "", { "iconClass": 'toast-info notification0' });
+		// toastr.info("Fetched the certificate with the given id", "", { "iconClass": 'toast-info notification0' });
 	}).catch(function (err) {
         toastr["error"]("Transaction Failed!");
     });
@@ -427,7 +427,7 @@ handleRegister: function(){
 								var card='';
 								if(res==0){
 								res='None'
-								card='<div class="col-lg-3"><div class="card text-white bg-primary">'+
+								card='<div class="col-lg-3 mb-4"><div class="card text-white bg-primary">'+
 								'<div class="card-header">'+ r.name+'</div>' +
 								'<div class="card-body">'+
 								'<h6 class="card-title">Asset # '+r.id+'</h6>'+
@@ -435,7 +435,7 @@ handleRegister: function(){
 								'<div class="card-footer">'+'<small><b>Owner:</b> '+result+'<br><b>Approved:</b> '+res+'</small></div>' +
 								'</div></div>';         
 								} else {
-									card='<div class="col-lg-3"><div class="card text-white bg-success">'+
+									card='<div class="col-lg-3 mb-4"><div class="card text-white bg-success">'+
 									'<div class="card-header">'+ r.name+'</div>' +
 									'<div class="card-body">'+
 									'<h6 class="card-title">Asset # '+r.id+'</h6>'+
