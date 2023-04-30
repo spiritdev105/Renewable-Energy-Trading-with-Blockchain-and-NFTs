@@ -42,6 +42,7 @@ App = {
 	  jQuery('#current_account').text(App.currentAccount[0]);
 
 		App.getUserRole();
+      	App.handleGetAllCertificates();
 		return App.bindEvents();
 	  
 	}) 
@@ -117,7 +118,10 @@ App = {
     $(document).on('click', '#submit-generate-rec', App.handleGenerateREC);
     $(document).on('click', '#submit-approve-user', App.handleApproveUser);
     $(document).on('click', '#submit-get-certificates-of-user', App.handleGetAllCertificatesOfUser);
-    $(document).on('click', '#submit-get-all-certificates', App.handleGetAllCertificates);
+    $(document).on('click', '#submit-get-all-certificates', () => {
+		location.reload();
+		App.handleGetAllCertificates()
+	});
     $(document).on('click', '#submit-get-certificate', App.handleGetCertificate);
     $(document).on('click', '#submit-verify-rec', App.handleVerifyREC);
     $(document).on('click', '#submit-sell-rec', App.handleSellREC);
@@ -383,34 +387,32 @@ handleRegister: function(){
     })
   },
 
-  handleSellREC: function () {
+  handleSellREC: async function () {	
     console.log("button clicked");
-    var idValue = $("#id-value").val();
-    App.contracts.vote.deployed().then(function (instance) {
-      sellRECInstance = instance;
-      return sellRECInstance.sellREC(idValue, {from:App.currentAccount[0]});  // added from parameter
-    }).then(function (res) {
-      console.log(res);
-        if (result) {
-          console.log(result.receipt.status);
-          if (parseInt(result.receipt.status) == 1)
-            toastr.info("REC as been verified", "", { "iconClass": 'toast-info notification0' });
-          else
-            toastr["error"]("Error in selling the REC. Transaction Reverted!");
-        } else {
-          toastr["error"]("Transaction Failed!");
-        }
-    }).catch(function (err) {
-        toastr["error"]("Transaction Failed!");
-    })
+    var idValue = $("#sell-rec-id-value").val();
+	var toAddress = jQuery('#sell-rec-to_address').val()
+	App.currentAccount = await ethereum.request({method: 'eth_accounts'});
+      var option={from:App.currentAccount[0], gasLimit: "1000000"};
+      App.contracts.vote.methods.approve(toAddress,parseInt(idValue))
+      .send(option)
+        // .on('receipt',(r)=>{
+        // })
+      .on('transactionHash',(hash)=>{
+        location.reload()
+        App.fetchAllAssets();
+        
+      }).on('error',(e)=>{
+        console.log(e)
+      })
   },
   
-  handleBuyREC: function () {
+  handleBuyREC: async function () {
+	App.currentAccount = await ethereum.request({method: 'eth_accounts'});
     console.log("button clicked");
-    var assetId = $("#id-value").val();
+    var assetId = $("#buy-rec-id-value").val();
 	var fromAddress = jQuery('#from_address').val()
 
-	App.contracts.vote.methods.recOwner(assetId)
+	App.contracts.vote.methods.recs(assetId)
       .call()
       .then((r)=>{
         console.log(r);
@@ -426,6 +428,8 @@ handleRegister: function(){
             toastr["error"]("Error in buying the REC. Transaction Reverted!");
         })
         .on('transactionHash',(hash)=>{
+			location.reload()
+      		App.handleGetAllCertificates();
         //   location.reload()
         //   App.fetchAllAssets();
           
