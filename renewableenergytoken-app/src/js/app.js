@@ -337,6 +337,7 @@ handleRegister: function(){
   
   handleGetAllCertificates: function () {
     console.log("button clicked");
+	$('#assets').empty();
 	App.contracts.vote.methods.recCount().call().then((length)=>{        
 			for(var i=0;i<length;i++){
 				App.contracts.vote.methods.recs(i).call()
