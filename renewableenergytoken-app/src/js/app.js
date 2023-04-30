@@ -37,7 +37,7 @@ App = {
 	  App.contracts.vote.methods.balanceOf()
 	  .call({from:App.currentAccount[0]})
 	  .then((receipt)=>{
-		jQuery('#balance').html(" Number of token owned by the current account: "+ receipt)
+		jQuery('#get-certificates-of-user-assets-balance').html(" Number of token owned by the current account: "+ receipt)
 	  })
 	  jQuery('#current_account').text(App.currentAccount[0]);
 
@@ -117,7 +117,10 @@ App = {
 	$(document).on('click', '#submit-approve-distributor', App.handleApproveDistributor);
     $(document).on('click', '#submit-generate-rec', App.handleGenerateREC);
     $(document).on('click', '#submit-approve-user', App.handleApproveUser);
-    $(document).on('click', '#submit-get-certificates-of-user', App.handleGetAllCertificatesOfUser);
+    $(document).on('click', '#submit-get-certificates-of-user',() => {
+		location.reload();
+		App.handleGetCertificatesOfUser()
+	});
     $(document).on('click', '#submit-get-all-certificates', () => {
 		location.reload();
 		App.handleGetAllCertificates()
@@ -187,6 +190,7 @@ App = {
 		e.preventDefault();
 		App.resetAll(document);
 		document.getElementById('get-certificates-of-user-page').style.display = "block";
+		App.handleGetCertificatesOfUser();
 	})
 
 	$('#get-certificate-nav-item').click(function(e) {
@@ -246,7 +250,7 @@ handleRegister: function(){
     var priceValue = $("#create-rec-price-value").val();
     // removed getting account part as we already have App.currentAccount
 
-	App.contracts.vote.methods.generateREC(nameValue, quantityValue, priceValue, addressValue).send({value:1, from : App.currentAccount[0]})
+	App.contracts.vote.methods.generateREC(nameValue, quantityValue, priceValue, addressValue).send({value:Web3.utils.toWei(priceValue), from : App.currentAccount[0]})
 	.on('receipt',(receipt)=>{
 		if ((receipt.status) )
 			toastr.info("You created an REC!", "", { "iconClass": 'toast-info notification0' });
@@ -317,11 +321,48 @@ handleRegister: function(){
 						})
 					})
 			}
-	
+
+			jQuery('#get-all-certificates-balance').html(" Number of total tokens: " + length)
 		  })
   },
   
   handleGetCertificate: function () {
+	console.log("button clicked");
+	var idValue = $("#get-certificate-pageid-value").val();
+
+	App.contracts.vote.methods.getCertificate(idValue).call().then((id, name, quantity, price, address, status)=>{  
+		document.getElementById("get-certificate-page-name-value").value = name;
+		document.getElementById("get-certificate-page-address-value").value = address;
+		document.getElementById("get-certificate-page-quantity-value").value = quantity;
+		document.getElementById("get-certificate-page-price-value").value = price;
+		toastr.info("Fetched the certificate with the given id", "", { "iconClass": 'toast-info notification0' });
+	}).catch(function (err) {
+        toastr["error"]("Transaction Failed!");
+    });
+
+
+	// App.contracts.vote.methods.recCount().call().then((length)=>{        
+	// 		for(var i=0;i<length;i++){
+	// 			App.contracts.vote.methods.recs(i).call()
+	// 				.then((r)=>{
+	// 					App.contracts.vote.methods.ownerOf(r.id).call().then((result)=>{
+	// 						App.contracts.vote.methods.assetApprovals(r.id).call().then((res)=>{
+	// 						if(res==0){
+	// 						res='None'
+	// 						} 
+							
+	// 						var card='<div class="col-lg-3"><div class="card">'+
+	// 						'<div class="card-body">'+
+	// 						'<h6 class="card-title">Asset # '+r.id+'</h6>'+
+	// 						'<p class="card-text">Price: '+r.price+' ETH </p></div>'+              
+	// 						'<div class="card-footer">'+'<small><b>Owner:</b> '+result+'<br><b>Approved:</b> '+res+'</small></div></div></div>';            
+	// 						$('#assets').append(card);
+	// 						})  
+	// 					})
+	// 				})
+	// 		}
+
+	// 	  })
     // console.log("button clicked");
     // var idValue = $("#id-value").val();
     // App.contracts.vote.deployed().then(function (instance) {
@@ -344,25 +385,32 @@ handleRegister: function(){
   },
 
   handleGetCertificatesOfUser: function () {
-    // console.log("button clicked");
-    // var addressValue = $("#address-value").val();
-    // App.contracts.vote.deployed().then(function (instance) {
-    //   getCertificatesOfUserInstance = instance;
-    //   return getCertificatesOfUserInstance.getCertificatesOfUser(addressValue, {from:App.currentAccount[0]});  // added from parameter
-    // }).then(function (res) {
-    //   console.log(res);
-    //     if (result) {
-    //       console.log(result.receipt.status);
-    //       if (parseInt(result.receipt.status) == 1)
-    //         toastr.info("Fetched the certificates of user", "", { "iconClass": 'toast-info notification0' });
-    //       else
-    //         toastr["error"]("Error in fetching the certificates of user. Transaction Reverted!");
-    //     } else {
-    //       toastr["error"]("Transaction Failed!");
-    //     }
-    // }).catch(function (err) {
-    //     toastr["error"]("Transaction Failed!");
-    // })
+	console.log("button clicked");
+	$('#get-certificates-of-user-assets').empty();
+	App.contracts.vote.methods.recCount().call().then((length)=>{        
+			for(var i=0;i<length;i++){
+				App.contracts.vote.methods.recs(i).call()
+					.then((r)=>{
+						App.contracts.vote.methods.ownerOf(r.id).call().then((result)=>{
+							if (result.toLowerCase() == App.currentAccount[0]) {
+							App.contracts.vote.methods.assetApprovals(r.id).call().then((res)=>{
+							if(res==0){
+							res='None'
+							} 
+							
+							var card='<div class="col-lg-3"><div class="card">'+
+							'<div class="card-body">'+
+							'<h6 class="card-title">Asset # '+r.id+'</h6>'+
+							'<p class="card-text">Price: '+r.price+' ETH </p></div>'+              
+							'<div class="card-footer">'+'<small><b>Owner:</b> '+result+'<br><b>Approved:</b> '+res+'</small></div></div></div>';            
+							$('#get-certificates-of-user-assets').append(card);
+							})  
+						}
+						})
+					})
+			}
+	
+		  })
   },
 
   handleVerifyREC: function () {

@@ -189,18 +189,20 @@
 				</div>
 			</div>
 		</div>
-        <div class="col-lg-6 col-lg-offset-1 registered-user" id="get-certificates-of-user-page" style="display: none;">
+        <div class="col-lg-12 registered-user" id="get-certificates-of-user-page" style="display: none;">
           <div style="margin-left:40px;">
             <h2 class="subs-title text-center">Get Certificates of User</h2>
-            <label class="subs-title">
+            <!-- <label class="subs-title">
                 <b>Address: </b>&nbsp;
                   <input type="text" class="get-certificates-of-user form-control" id="address-value" placeholder="Enter Id here"></input>
                 <br/>
                 <br>
-            </label>
+            </label> -->
            
-	    	<center style="padding-top:25px"><button type="submit" id="submit-get-certificates-of-user" class="btn btn-primary btn-action align-center">Get Certificates of User</button></center>
-	    
+	    	<!-- <center style="padding-top:25px"><button type="submit" id="submit-get-certificates-of-user" class="btn btn-primary btn-action align-center">Get Certificates of User</button></center> -->
+				<span id='get-certificates-of-user-assets-balance'> </span>
+					<div class="card-group" id='get-certificates-of-user-assets'>                
+					</div>
             <hr style="width:200px">
           </div>
         </div>
@@ -211,8 +213,8 @@
 			 
 			  <!-- <center style="padding-top:25px"><button type="submit" id="submit-get-all-certificates" class="btn btn-primary btn-action align-center">Get All Certificates</button></center>  -->
                     
-				<h3>Available Certificates</h3>
-				<span id='balance'> </span>
+				<!-- <h3>Available Certificates</h3> -->
+				<span id='get-all-certificates-balance'> </span>
 					<div class="card-group" id='assets'>                
 					</div>
 			  <hr style="width:200px">
@@ -225,11 +227,35 @@
 			  
 			  <label class="subs-title">
                 <b>Id: </b>&nbsp;
-                  <input type="text" class="get-certificate form-control" id="id-value"></input>
+                  <input type="text" class="get-certificate form-control" id="get-certificate-pageid-value"></input>
                 <br/>
             </label>
 			<center style="padding-top:25px"><button type="submit" id="submit-get-certificate" class="btn btn-primary btn-action align-center">Get Certificate</button></center>
-		  
+			<hr style="width:200px">
+
+            <label class="subs-title">
+                <b>Name: </b>&nbsp;
+                  <input type="text" class="generate-rec form-control" id="get-certificate-page-name-value" readonly="readonly"></input>
+                <br/>
+            </label>
+            
+            <label class="subs-title">
+                <b>Address: </b>&nbsp;
+                  <input type="text" class="generate-rec form-control" id="get-certificate-page-address-value" readonly="readonly"></input>
+                <br/>
+            </label>
+
+            <label class="subs-title">
+                <b>Quantity: </b>&nbsp;
+                  <input type="text" class="generate-rec form-control" id="get-certificate-page-quantity-value" readonly="readonly"></input>
+                <br/>
+            </label>
+            
+            <label class="subs-title">
+                <b>Price: </b>&nbsp;
+                  <input type="text" class="generate-rec form-control" id="get-certificate-page-price-value" readonly="readonly"></input>
+                <br/>
+            </label>
 			  <hr style="width:200px">
 			</div>
 		  </div>

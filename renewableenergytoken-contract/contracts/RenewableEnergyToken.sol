@@ -167,12 +167,12 @@ contract RenewableEnergyToken is ERC721 {
 
         return allCertificates;
     }
-
-    function getCertificate(string memory id) public view onlyRegistered returns (string memory, string memory, uint, uint, address, Status) {
-        REC memory rec = recs[id];
-        return (id, rec.name, rec.quantity, rec.price, rec.status);
-    }
     */
+
+	function getCertificate(uint id) public view onlyRegistered returns (uint, string memory, uint, uint,address, Status) {
+        REC memory rec = recs[id];
+        return (id, rec.name, rec.quantity, rec.price, recOwner[id], rec.status);
+    }
 
     function verifyREC(uint id) public view onlyRegistered returns (bool) {
         require(id>=0, "Invalid input parameter");
