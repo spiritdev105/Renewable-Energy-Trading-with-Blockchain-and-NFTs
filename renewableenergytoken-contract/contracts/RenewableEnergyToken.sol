@@ -89,6 +89,14 @@ contract RenewableEnergyToken is ERC721 {
          return owner;
      }
     
+	function appreciate(uint256 assetId,uint256 value) public onlyDistributor{
+        recs[assetId].price = recs[assetId].price + value;
+    }
+    
+	function depreciate(uint256 assetId,uint256 value) public onlyDistributor{
+        recs[assetId].price = recs[assetId].price - value;
+    }
+    
     function transferFrom(address payable from, uint256 recId) public payable{
         require(isApprovedOrOwner(msg.sender, recId), "NotAnApprovedOwner");
         require(ownerOf(recId) == from, "NotTheassetOwner");

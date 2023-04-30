@@ -60,6 +60,9 @@ App = {
 	document.getElementById('sell-rec-nav-item-li').style.display = "none";
 	document.getElementById('buy-rec-nav-item-li').style.display = "none";
 	document.getElementById('top-up-nav-item-li').style.display = "none";
+	document.getElementById('apreciate-depreciate-nav-text').text = "";
+	document.getElementById('appreciate-depreciate-form').style.display = "none";
+
 
 	if (App.currentAccountRole == 'none') {
 		document.getElementById("self-register-nav-item-li").style.display = "block";
@@ -75,6 +78,8 @@ App = {
 		document.getElementById('sell-rec-nav-item-li').style.display = "block";
 		document.getElementById('buy-rec-nav-item-li').style.display = "block";
 		document.getElementById('top-up-nav-item-li').style.display = "block";
+		document.getElementById('apreciate-depreciate-nav-text').text = "/ Appreciate / Depreciate";
+		document.getElementById('appreciate-depreciate-form').style.display = "block";
 	} else if (App.currentAccountRole == 'distributor') {
 		document.getElementById('get-all-certificates-nav-item-li').style.display = "block";
 		document.getElementById('get-certificates-of-user-nav-item-li').style.display = "block";
@@ -86,6 +91,8 @@ App = {
 		document.getElementById('buy-rec-nav-item-li').style.display = "block";
 		document.getElementById('top-up-nav-item-li').style.display = "block";
 		document.getElementById('get-all-certificates-page').style.display = "block";
+		document.getElementById('apreciate-depreciate-nav-text').text = "/ Appreciate / Depreciate";
+		document.getElementById('appreciate-depreciate-form').style.display = "block";
 	} else if (App.currentAccountRole == 'registered') {
 		document.getElementById('get-all-certificates-nav-item-li').style.display = "block";
 		document.getElementById('get-certificates-of-user-nav-item-li').style.display = "block";
@@ -111,6 +118,7 @@ App = {
 	document.getElementById('get-certificates-of-user-page').style.display = "none";
 	document.getElementById('get-all-certificates-page').style.display = "none";
 	document.getElementById('get-certificate-page').style.display = "none";
+	document.getElementById('appreciate-depreciate-form').style.display = "none";
   },
 
   bindEvents: function () {
@@ -184,6 +192,7 @@ App = {
 		e.preventDefault();
 		App.resetAll(document);
 		document.getElementById('get-all-certificates-page').style.display = "block";
+		App.handleGetAllCertificates();
 	})
 
 	$('#get-certificates-of-user-nav-item').click(function(e) {
@@ -203,6 +212,14 @@ App = {
 		$(".nav-item a").removeClass("active");
 		$(this).addClass("active");
 	  });
+
+	  $(document).on('click', '#appreciate_asset', function(){
+        App.AppreciateREC(jQuery('#assess_asset_id').val(),jQuery('#assess_value').val());
+      });
+
+      $(document).on('click', '#depreciate_asset', function(){
+        App.DepreciateREC(jQuery('#assess_asset_id').val(),jQuery('#assess_value').val());
+      });
 	// App.populateAddress();
     //$(document).on('click', '#register', function(){ var ad = $('#enter_address').val(); App.handleRegister(ad); });
   },
@@ -258,8 +275,6 @@ handleRegister: function(){
     var addressValue = $("#create-rec-address-value").val();
     var quantityValue = $("#create-rec-quantity-value").val();
     var priceValue = $("#create-rec-price-value").val();
-    // removed getting account part as we already have App.currentAccount
-	// create-rec-address-value
 
 	App.contracts.vote.methods.generateREC(nameValue, quantityValue, priceValue, addressValue).send({value:Web3.utils.toWei(priceValue), from : App.currentAccount[0]})
 	.on('receipt',(receipt)=>{
@@ -358,6 +373,32 @@ handleRegister: function(){
 			jQuery('#get-all-certificates-balance').html(" Number of total tokens: " + length)
 		  })
   },
+
+  AppreciateREC:function(assetId,appreciationValue){
+	App.contracts.vote.methods.appreciate(parseInt(assetId),parseInt(appreciationValue))
+	.send({from:App.currentAccount[0]})
+	.on('receipt',(r)=>{
+		document.getElementById("get-certificate-page-name-value").value = '';
+		document.getElementById("get-certificate-page-address-value").value = '';
+		document.getElementById("get-certificate-page-quantity-value").value = '';
+		document.getElementById("get-certificate-page-price-value").value  ='';
+		
+	//   handleGetCertificate();
+	$('#submit-get-certificate').click();
+	})
+  },
+  DepreciateREC:function(assetId,depreciationValue){
+	App.contracts.vote.methods.depreciate(parseInt(assetId),parseInt(depreciationValue))
+	.send({from:App.currentAccount[0]})
+	.on('receipt',(r)=>{
+		document.getElementById("get-certificate-page-name-value").value = '';
+		document.getElementById("get-certificate-page-address-value").value = '';
+		document.getElementById("get-certificate-page-quantity-value").value = '';
+		document.getElementById("get-certificate-page-price-value").value  ='';
+		// handleGetCertificate();
+		$('#submit-get-certificate').click();
+	})
+  },
   
   handleGetCertificate: function () {
 	console.log("button clicked");
@@ -372,49 +413,6 @@ handleRegister: function(){
 	}).catch(function (err) {
         toastr["error"]("Transaction Failed!");
     });
-
-
-	// App.contracts.vote.methods.recCount().call().then((length)=>{        
-	// 		for(var i=0;i<length;i++){
-	// 			App.contracts.vote.methods.recs(i).call()
-	// 				.then((r)=>{
-	// 					App.contracts.vote.methods.ownerOf(r.id).call().then((result)=>{
-	// 						App.contracts.vote.methods.assetApprovals(r.id).call().then((res)=>{
-	// 						if(res==0){
-	// 						res='None'
-	// 						} 
-							
-	// 						var card='<div class="col-lg-3"><div class="card">'+
-	// 						'<div class="card-body">'+
-	// 						'<h6 class="card-title">Asset # '+r.id+'</h6>'+
-	// 						'<p class="card-text">Price: '+r.price+' ETH </p></div>'+              
-	// 						'<div class="card-footer">'+'<small><b>Owner:</b> '+result+'<br><b>Approved:</b> '+res+'</small></div></div></div>';            
-	// 						$('#assets').append(card);
-	// 						})  
-	// 					})
-	// 				})
-	// 		}
-
-	// 	  })
-    // console.log("button clicked");
-    // var idValue = $("#id-value").val();
-    // App.contracts.vote.deployed().then(function (instance) {
-    //   getCertificateInstance = instance;
-    //   return getCertificateInstance.getCertificate(idValue, {from:App.currentAccount[0]});  // added from parameter
-    // }).then(function (res) {
-    //   console.log(res);
-    //     if (result) {
-    //       console.log(result.receipt.status);
-    //       if (parseInt(result.receipt.status) == 1)
-    //         toastr.info("Fetched the certificate with the given id", "", { "iconClass": 'toast-info notification0' });
-    //       else
-    //         toastr["error"]("Error in fetching the certificate with the given id. Transaction Reverted!");
-    //     } else {
-    //       toastr["error"]("Transaction Failed!");
-    //     }
-    // }).catch(function (err) {
-    //     toastr["error"]("Transaction Failed!");
-    // })
   },
 
   handleGetCertificatesOfUser: function () {
