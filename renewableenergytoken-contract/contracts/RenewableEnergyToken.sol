@@ -73,13 +73,13 @@ contract RenewableEnergyToken is ERC721 {
 
     //ERC721 methods
     
-    // function ownerOf(uint256 assetId) public view returns (address) {
-    //     address owner = recOwner[assetId];
-    //     require(owner != address(0), "NoAssetExists");
-    //     return owner;
-    // }
+     function ownerOf(uint256 assetId) public view override returns (address) {
+         address owner = recOwner[assetId];
+         require(owner != address(0), "NoAssetExists");
+         return owner;
+     }
     
-    function transferFrom(address payable from, uint256 recId) public payable {
+    function transferFrom(address payable from, uint256 recId) public payable{
         require(isApprovedOrOwner(msg.sender, recId), "NotAnApprovedOwner");
         require(ownerOf(recId) == from, "NotTheassetOwner");
         clearApproval(recId,getApproved(recId));
@@ -90,18 +90,18 @@ contract RenewableEnergyToken is ERC721 {
         emit Transfer(from, msg.sender, recId);
     }
 
-    // function approve(address to,uint256 assetId) public {
-    //     address owner = ownerOf(assetId);
-    //     require(to != owner, "CurrentOwnerApproval");
-    //     require(msg.sender == owner,"NotTheAssetOwner");
-    //     assetApprovals[assetId] = to;
-    //     emit Approval(owner, to, assetId);
-    // }
+    function approve(address to,uint256 assetId) public override {
+        address owner = ownerOf(assetId);
+        require(to != owner, "CurrentOwnerApproval");
+        require(msg.sender == owner,"NotTheAssetOwner");
+        assetApprovals[assetId] = to;
+        emit Approval(owner, to, assetId);
+    }
 
-    // function getApproved(uint256 assetId) public view returns (address) {
-    //     require(exists(assetId), "ERC721: approved query for nonexistent token");
-    //     return assetApprovals[assetId];
-    // }
+    function getApproved(uint256 assetId) public view override returns (address) {
+        require(exists(assetId), "ERC721: approved query for nonexistent token");
+        return assetApprovals[assetId];
+    }
     
 	function clearApproval(uint256 assetId,address approved) public {
         if (assetApprovals[assetId]==approved){
@@ -179,7 +179,7 @@ contract RenewableEnergyToken is ERC721 {
         return true;
     }
 
-
+    /*
     function buyREC(uint id) public onlyRegistered payable {
         REC storage rec = recs[id];
         require(id>=0 && id<recCount, "REC not found");
@@ -207,6 +207,7 @@ contract RenewableEnergyToken is ERC721 {
         recOwner[id] = msg.sender;
         rec.status = Status.Available;
     }
+    */
 
     function approveDistributor(address userAddress) public onlyOwner {
         User storage user = users[userAddress];
