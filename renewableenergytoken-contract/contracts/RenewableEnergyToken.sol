@@ -72,37 +72,42 @@ contract RenewableEnergyToken is ERC721 {
 	}
 
     //ERC721 methods
-    /*
-    function ownerOf(uint256 assetId) public view returns (address) {
-        address owner = recOwner[assetId];
-        require(owner != address(0), "NoAssetExists");
-        return owner;
-    }
+    
+    // function ownerOf(uint256 assetId) public view returns (address) {
+    //     address owner = recOwner[assetId];
+    //     require(owner != address(0), "NoAssetExists");
+    //     return owner;
+    // }
     
     function transferFrom(address payable from, uint256 recId) public payable {
         require(isApprovedOrOwner(msg.sender, recId), "NotAnApprovedOwner");
-        require(ownerOf(rectId) == from, "NotTheassetOwner");
+        require(ownerOf(recId) == from, "NotTheassetOwner");
         clearApproval(recId,getApproved(recId));
         ownedAssetsCount[from]--;
         ownedAssetsCount[msg.sender]++;
-        assetOwner[assetId] = msg.sender;
-        from.transfer(assetMap[recId].price * 1000000000000000000);
+        recOwner[recId] = msg.sender;
+        from.transfer(recs[recId].price * 1000000000000000000);
         emit Transfer(from, msg.sender, recId);
     }
 
-    function approve(address to,uint256 assetId) public {
-        address owner = ownerOf(assetId);
-        require(to != owner, "CurrentOwnerApproval");
-        require(msg.sender == owner,"NotTheAssetOwner");
-        assetApprovals[assetId] = to;
-        emit Approval(owner, to, assetId);
-    }
+    // function approve(address to,uint256 assetId) public {
+    //     address owner = ownerOf(assetId);
+    //     require(to != owner, "CurrentOwnerApproval");
+    //     require(msg.sender == owner,"NotTheAssetOwner");
+    //     assetApprovals[assetId] = to;
+    //     emit Approval(owner, to, assetId);
+    // }
 
-    function getApproved(uint256 assetId) public view returns (address) {
-        require(exists(assetId), "ERC721: approved query for nonexistent token");
-        return assetApprovals[assetId];
+    // function getApproved(uint256 assetId) public view returns (address) {
+    //     require(exists(assetId), "ERC721: approved query for nonexistent token");
+    //     return assetApprovals[assetId];
+    // }
+    
+	function clearApproval(uint256 assetId,address approved) public {
+        if (assetApprovals[assetId]==approved){
+            assetApprovals[assetId] = address(0);
+        }
     }
-    */
 
     // Function used internally by other methods
     function mint(address to, uint256 recId) internal {
