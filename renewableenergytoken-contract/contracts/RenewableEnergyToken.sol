@@ -148,30 +148,6 @@ contract RenewableEnergyToken is ERC721 {
         recCount = recCount+1;
     }
 
-    /*
-    function getCertificatesOfUser() public view onlyRegistered returns (REC[] memory) {
-        return users[msg.sender].certificates;
-    }
-
-    function getAllCertificates() public view onlyRegistered returns (REC[] memory) {
-        uint totalCertificates;
-        for (uint i = 0; i < addressList.length; i++) {
-            totalCertificates += users[addressList[i]].certificates.length;
-        }
-
-        REC[] memory allCertificates = new REC[](totalCertificates);
-        uint currentIndex = 0;
-        for (uint i = 0; i < addressList.length; i++) {
-            REC[] memory userCertificates = users[addressList[i]].certificates;
-            for (uint j = 0; j < userCertificates.length; j++) {
-                allCertificates[currentIndex] = userCertificates[j];
-                currentIndex++;
-            }
-        }
-
-        return allCertificates;
-    }
-    */
 
 	function getCertificate(uint id) public view onlyRegistered returns (uint, string memory, uint, uint,address, Status) {
         REC memory rec = recs[id];
@@ -188,36 +164,6 @@ contract RenewableEnergyToken is ERC721 {
         require(address(this).balance >= rec.price, "Insufficient balance");
         return true;
     }
-
-    /*
-    function buyREC(uint id) public onlyRegistered payable {
-        REC storage rec = recs[id];
-        require(id>=0 && id<recCount, "REC not found");
-        require(rec.status == Status.Available, "REC not available for purchase");
-
-        User storage buyer = users[msg.sender];
-        require(buyer.balance >= rec.price, "Insufficient balance");
-
-        User storage seller = users[recOwner[id]];
-        seller.balance += rec.price;
-
-        buyer.balance -= rec.price;
-        buyer.certificates.push(rec);
-        rec.status = Status.Sold;
-        recOwner[id] = msg.sender;
-    }
-
-    function sellREC(uint id, uint price) public onlyRegistered {
-        REC storage rec = recs[id];
-        require(id>=0 && id<recCount, "REC not found");
-        require(rec.status == Status.Available, "Cannot update price for sold REC");
-        require(recOwner[id] == address(0) || recOwner[id] == msg.sender, "Only seller can update price");
-
-        rec.price = price;
-        recOwner[id] = msg.sender;
-        rec.status = Status.Available;
-    }
-    */
 
     function approveDistributor(address userAddress) public onlyOwner {
         User storage user = users[userAddress];

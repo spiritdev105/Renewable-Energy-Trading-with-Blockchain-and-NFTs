@@ -488,15 +488,15 @@ handleRegister: function(){
       .send(option)
         .on('receipt',(receipt)=>{
 			console.log(receipt)
-		  if (receipt.status) {
+		  
+        })
+      .on('transactionHash',(hash)=>{
+        if (hash) {
             toastr.info("REC has been sent to Buyer", "", { "iconClass": 'toast-info notification0' });
 			location.reload()
       		App.handleGetAllCertificates();
 		  }else
             toastr["error"]("Error in selling the REC. Transaction Reverted!");
-        })
-      .on('transactionHash',(hash)=>{
-        
       }).on('error',(e)=>{
         console.log(e)
       })
@@ -518,17 +518,14 @@ handleRegister: function(){
         .send({from:App.currentAccount[0],value: Web3.utils.toWei(option)})
         .on('receipt',(receipt)=>{
           console.log(receipt)
-		  if (receipt.status)
-            toastr.info("REC has been bought", "", { "iconClass": 'toast-info notification0' });
-          else
-            toastr["error"]("Error in buying the REC. Transaction Reverted!");
         })
         .on('transactionHash',(hash)=>{
-			location.reload()
-      		App.handleGetAllCertificates();
-        //   location.reload()
-        //   App.fetchAllAssets();
-          
+			if (hash) {
+				toastr.info("REC has been bought", "", { "iconClass": 'toast-info notification0' });
+				location.reload()
+				  App.handleGetAllCertificates();
+			  }else
+			  	toastr["error"]("Error in buying the REC. Transaction Reverted!");          
         }).on('error',(e)=>{
           console.log(e)
 		  toastr["error"]("Transaction Failed!");
