@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract RenewableEnergyToken is ERC721 {
     
-    address owner;
+    address public owner;
     
     struct User {
         string id;
@@ -25,7 +25,7 @@ contract RenewableEnergyToken is ERC721 {
     }
 
     uint public recCount;
-    mapping(uint => REC) recs;
+    mapping(uint => REC) public recs;
     mapping(uint => address) private recOwner;
     mapping (address => uint256) private ownedAssetsCount;    
     mapping (uint256 => address) public assetApprovals;
@@ -72,6 +72,12 @@ contract RenewableEnergyToken is ERC721 {
 	}
 
     //ERC721 methods
+
+	function balanceOf() public view returns (uint256)  {
+        require(msg.sender != address(0), "ERC721: balance query for the zero address");
+
+        return ownedAssetsCount[msg.sender];
+    }
     
      function ownerOf(uint256 assetId) public view override returns (address) {
          address owner = recOwner[assetId];

@@ -152,13 +152,13 @@
 
             <label class="subs-title">
                 <b>Quantity: </b>&nbsp;
-                  <input type="text" class="generate-rec form-control" id="quantity-value"></input>
+                  <input type="text" class="generate-rec form-control" id="create-rec-quantity-value"></input>
                 <br/>
             </label>
             
             <label class="subs-title">
                 <b>Price: </b>&nbsp;
-                  <input type="text" class="generate-rec form-control" id="price-value"></input>
+                  <input type="text" class="generate-rec form-control" id="create-rec-price-value"></input>
                 <br/>
             </label>
 
@@ -175,7 +175,7 @@
 	
 				<label class="subs-title">
 					<b>Address:</b>&nbsp;
-					  <input type="text" class="approve-user form-control" id="address-value"></input>
+					  <input type="text" class="approve-user form-control" id="approve-user-address-value"></input>
 					  &nbsp; <br><br>
 					<br/>
 				</label>
@@ -202,13 +202,16 @@
           </div>
         </div>
 
-		<div class="col-lg-6 col-lg-offset-1 registered-user" id="get-all-certificates-page" style="display: none;">
+		<div class='col-lg-12' id="get-all-certificates-page" style="display: none;">
 			<div style="margin-left:40px;">
-			  <h2 class="subs-title text-center">Get All Certificates</h2>
 			  
 			 
 			  <center style="padding-top:25px"><button type="submit" id="submit-get-all-certificates" class="btn btn-primary btn-action align-center">Get All Certificates</button></center> 
-		  
+                    
+				<h3>Available Certificates</h3>
+				<span id='balance'> </span>
+					<div class="card-group" id='assets'>                
+					</div>
 			  <hr style="width:200px">
 			</div>
 		  </div>
@@ -228,7 +231,7 @@
 			</div>
 		  </div>
 
-		<div class="col-lg-6 col-lg-offset-1 distributor" id="verify-REC-page" style="display: none;">
+		<div class="col-lg-6 col-lg-offset-1 distributor" id="verify-rec-page" style="display: none;">
 			<div style="margin-left:40px;">
 				<h2 class="subs-title text-center">Verify REC</h2>
 
@@ -243,22 +246,28 @@
 				  <hr style="width:200px">
 			</div>
 		  </div>
-		  <div class="col-lg-6 col-lg-offset-1 distributor" id="buy-REC-page" style="display: none;">
+		  <div class="col-lg-6 col-lg-offset-1 distributor" id="buy-rec-page" style="display: none;">
 			<div style="margin-left:40px;">
 				<h2 class="subs-title text-center">Buy REC</h2>
             
+				<div class="form-group">
+					<label for="from_address">From</label>
+					<select id='from_address' class="form-control"></select>
+				  </div>
+				<div class="form-group">
 				<label class="subs-title">
 					<b>Id: </b>&nbsp;
-					  <input type="text" class="buy-rec form-control" id="id-value"></input>
+					  <input type="text" class="buy-rec form-control" id="buy-rec-id-value"></input>
 					<br/>
 				</label>
+			</div>
 	
 				<center style="padding-top:25px"><button type="submit" id="submit-buy-rec" class="btn btn-primary btn-action align-center">Buy REC</button></center>
 				
 				<hr style="width:200px">
 			</div>
 		  </div>
-		  <div class="col-lg-6 col-lg-offset-1 distributor" id="sell-REC-page" style="display: none;">
+		  <div class="col-lg-6 col-lg-offset-1 distributor" id="sell-rec-page" style="display: none;">
 			<div style="margin-left:40px;">
 				<h2 class="subs-title text-center">Sell REC</h2>
              
@@ -302,7 +311,7 @@
   <script src="js/dist/custom.js"></script>
   <script src="js/dist/bootstrap.min.js"></script>
   <script src="js/dist/toastr.min.js"></script>
-  <script src="js/dist/web3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
   <script src="js/dist/truffle-contract.js"></script>
   <script src="js/app.js"></script>
 </body>

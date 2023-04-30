@@ -1,9 +1,9 @@
 App = {
-  web3Provider: null,
+  web3: null,
   contracts: {},
   names: new Array(),
   url: 'http://127.0.0.1:7545',
-  // network_id: 5777,
+  network_id: 5777,
   chairPerson: null,
   currentAccount: null,
   currentAccountRole: null,
@@ -14,33 +14,37 @@ App = {
   },
 
   initWeb3: function () {
-    // Is there is an injected web3 instance?
-    if (typeof web3 !== 'undefined') {
-      App.web3Provider = web3.currentProvider;
-    } else {
-      // If no injected web3 instance is detected, fallback to the TestRPC
-      App.web3Provider = new Web3.providers.HttpProvider(App.url);
-    }
-    web3 = new Web3(App.web3Provider);
-    ethereum.enable();
-    App.populateAddress();
-    return App.initContract();
+	if (typeof web3 !== 'undefined') {
+        App.web3 = new Web3(Web3.givenProvider);
+      } else {
+        App.web3 = new Web3(App.url);
+      }
+	  
+      ethereum.enable();   
+	  App.populateAddress();   
+      return App.initContract();
   },
 
-  initContract: function () {
-    $.getJSON('RenewableEnergyToken.json', function (data) {
-      // Get the necessary contract artifact file and instantiate it with truffle-contract
-      var voteArtifact = data;
-      App.contracts.vote = TruffleContract(voteArtifact);
-      App.contracts.mycontract = data;
-      // Set the provider for our contract
-      App.contracts.vote.setProvider(App.web3Provider);
-      App.currentAccount = web3.eth.coinbase;
-      jQuery('#current_account').text(App.currentAccount);
-	  App.getUserRole();
+  initContract: async function () {
+	App.currentAccount = await ethereum.request({method: 'eth_accounts'});  
+	$.getJSON('RenewableEnergyToken.json', function(data) {      
+	  App.contracts.vote = new App.web3.eth.Contract(data.abi, data.networks[App.network_id].address, {});
+	  App.contracts.vote.methods.owner()
+	  .call()
+	  .then((r)=>{
+		App.chairPerson=r;
+	  })
+	  App.contracts.vote.methods.balanceOf()
+	  .call({from:App.currentAccount[0]})
+	  .then((receipt)=>{
+		jQuery('#balance').html(" Number of token owned by the current account: "+ receipt)
+	  })
+	  jQuery('#current_account').text(App.currentAccount[0]);
+
+		App.getUserRole();
+		return App.bindEvents();
 	  
-      return App.bindEvents();
-    });
+	}) 
   },
 
   resetNav: function(document) {
@@ -63,7 +67,7 @@ App = {
 		document.getElementById('get-certificates-of-user-nav-item-li').style.display = "block";
 		document.getElementById('get-certificate-nav-item-li').style.display = "block";
 		document.getElementById('approve-distributor-nav-item-li').style.display = "block";
-		document.getElementById('verify-REC-page').style.display = "block";
+		document.getElementById('get-all-certificates-page').style.display = "block";
 		document.getElementById('create-rec-nav-item-li').style.display = "block";
 		document.getElementById('approve-user-nav-item-li').style.display = "block";
 		document.getElementById('verify-rec-nav-item-li').style.display = "block";
@@ -80,6 +84,7 @@ App = {
 		document.getElementById('sell-rec-nav-item-li').style.display = "block";
 		document.getElementById('buy-rec-nav-item-li').style.display = "block";
 		document.getElementById('top-up-nav-item-li').style.display = "block";
+		document.getElementById('get-all-certificates-page').style.display = "block";
 	} else if (App.currentAccountRole == 'registered') {
 		document.getElementById('get-all-certificates-nav-item-li').style.display = "block";
 		document.getElementById('get-certificates-of-user-nav-item-li').style.display = "block";
@@ -88,6 +93,8 @@ App = {
 		document.getElementById('sell-rec-nav-item-li').style.display = "block";
 		document.getElementById('buy-rec-nav-item-li').style.display = "block";
 		document.getElementById('top-up-nav-item-li').style.display = "block";
+		document.getElementById('get-all-certificates-page').style.display = "block";
+
 	}
   },
 
@@ -96,9 +103,9 @@ App = {
 	document.getElementById('approve-distributor-page').style.display = "none";
 	document.getElementById('create-rec-page').style.display = "none";
 	document.getElementById('approve-user-page').style.display = "none";
-	document.getElementById('verify-REC-page').style.display = "none";
-	document.getElementById('sell-REC-page').style.display = "none";
-	document.getElementById('buy-REC-page').style.display = "none";
+	document.getElementById('verify-rec-page').style.display = "none";
+	document.getElementById('sell-rec-page').style.display = "none";
+	document.getElementById('buy-rec-page').style.display = "none";
 	document.getElementById('topup-balance-page').style.display = "none";
 	document.getElementById('get-certificates-of-user-page').style.display = "none";
 	document.getElementById('get-all-certificates-page').style.display = "none";
@@ -145,19 +152,19 @@ App = {
 	$('#verify-rec-nav-item').click(function(e) {
 		e.preventDefault();
 		App.resetAll(document);
-		document.getElementById('verify-REC-page').style.display = "block";
+		document.getElementById('verify-rec-page').style.display = "block";
 	})
 
 	$('#sell-rec-nav-item').click(function(e) {
 		e.preventDefault();
 		App.resetAll(document);
-		document.getElementById('sell-REC-page').style.display = "block";
+		document.getElementById('sell-rec-page').style.display = "block";
 	})
 
 	$('#buy-rec-nav-item').click(function(e) {
 		e.preventDefault();
 		App.resetAll(document);
-		document.getElementById('buy-REC-page').style.display = "block";
+		document.getElementById('buy-rec-page').style.display = "block";
 	})
 
 	$('#top-up-nav-item').click(function(e) {
@@ -183,69 +190,47 @@ App = {
 		App.resetAll(document);
 		document.getElementById('get-certificate-page').style.display = "block";
 	})
+	// App.populateAddress();
     //$(document).on('click', '#register', function(){ var ad = $('#enter_address').val(); App.handleRegister(ad); });
   },
 
   populateAddress: function () {
-    new Web3(new Web3.providers.HttpProvider(App.url)).eth.getAccounts((err, accounts) => {
-      jQuery.each(accounts, function (i) {
-        if (web3.eth.coinbase != accounts[i]) {
-          var optionElement = '<option value="' + accounts[i] + '">' + accounts[i] + '</option';
-          jQuery('#enter_address').append(optionElement);
+	new Web3(App.url).eth.getAccounts((err, accounts) => {
+        // console.log(accounts[0]);
+        var option='<option></option>';
+        for(var i=0;i<accounts.length;i++){
+          option+='<option>'+accounts[i]+'</option>'; 
         }
+        jQuery('#asset_owner').append(option);
+        jQuery('#to_address').append(option);
+        jQuery('#from_address').append(option);
       });
-    });
   },
 
   getUserRole: function() {
-	App.contracts.vote.deployed().then(function(instance) {
-		generateRECInstance = instance;
-		console.log(instance)
-        return generateRECInstance.getUserRole(App.currentAccount, {from:App.currentAccount});
-	  }).then(function(result) {
+	App.contracts.vote.methods.getUserRole(App.currentAccount[0]).call().then((result)=>{
 		App.currentAccountRole = result;
 		jQuery('#current_account_role').text(App.currentAccountRole);
 		App.resetNav(document);
-	  })
+	})
   },
-
-//   getChairperson: function() {
-//     App.contracts.vote.deployed().then(function(instance) {
-//       return instance.beneficiary();
-//     }).then(function(result) {
-//       App.chairPerson = result;
-//       if(App.currentAccount == App.chairPerson) {
-//         $(".chairperson").css("display", "inline");
-//         $(".img-chairperson").css("width", "100%");
-//         $(".img-chairperson").removeClass("col-lg-offset-2");
-//       } else {
-//         $(".other-user").css("display", "inline");
-//       }
-//     })
-//   },
 
 handleRegister: function(){ 
 	console.log("button clicked");
 	var idValue = $("#id-value").val();
     var nameValue = $("#name-value").val();
-    var addressValue = App.currentAccount;
-      App.contracts.vote.deployed().then(function (instance) {
-        appApproveUserInstance = instance;
-
-        return appApproveUserInstance.selfRegister(idValue, nameValue ,addressValue, {from : App.currentAccount}); // added from parameter
-      }).then(function (result, err) {
-        if (result) {
-          console.log(result.receipt.status);
-          if (parseInt(result.receipt.status) == 1)
+    var addressValue = App.currentAccount[0];
+      App.contracts.vote.methods.selfRegister(idValue, nameValue ,addressValue).send({from : App.currentAccount[0]})
+	  .on('receipt',(receipt)=>{
+		if ((receipt.status) )
             toastr.info("User as been Registered", "", { "iconClass": 'toast-info notification0' });
           else
             toastr["error"]("Error in approving user. Transaction Reverted!");
-        } else {
-          toastr["error"]("Transaction Failed!");
-        }
-      }).catch(function (err) {
+        })
+	  .on('transactionHash', function(hash){
+	  }).on('error',(e)=>{
         toastr["error"]("Transaction Failed!");
-      });
+	  })
 },
 
   handleGenerateREC: function () {
@@ -253,139 +238,127 @@ handleRegister: function(){
     //var idValue = $("#id-value").val();
     var nameValue = $("#create-rec-name-value").val();
     var addressValue = $("#create-rec-address-value").val();
-    var quantityValue = $("#quantity-value").val();
-    var priceValue = $("#price-value").val();
+    var quantityValue = $("#create-rec-quantity-value").val();
+    var priceValue = $("#create-rec-price-value").val();
     // removed getting account part as we already have App.currentAccount
 
-      App.contracts.vote.deployed().then(function (instance) {
-        generateRECInstance = instance;
-
-        return generateRECInstance.generateREC(nameValue, quantityValue, priceValue, addressValue, {value:web3.toWei(priceValue, 'ether'), from : App.currentAccount}); // added from parameter
-      }).then(function (result, err) {
-        if (result) {
-          console.log(result.receipt.status);
-          if (parseInt(result.receipt.status) == 1)
-            toastr.info("You created an REC!", "", { "iconClass": 'toast-info notification0' });
-          else
-            toastr["error"]("Error in generating REC. Transaction Reverted!");
-        } else {
-          toastr["error"]("Transaction Failed!");
-        }
-      }).catch(function (err) {
-        toastr["error"]("Transaction Failed!");
-      });
+	App.contracts.vote.methods.generateREC(nameValue, quantityValue, priceValue, addressValue).send({value:1, from : App.currentAccount[0]})
+	.on('receipt',(receipt)=>{
+		if ((receipt.status) )
+			toastr.info("You created an REC!", "", { "iconClass": 'toast-info notification0' });
+		else
+			toastr["error"]("Error in generating REC. Transaction Reverted!");
+	})
+	.on('transactionHash', function(hash){
+	}).on('error',(e)=>{
+		toastr["error"]("Transaction Failed!");
+	})
   },
 
   handleApproveDistributor: function () {
     console.log("button clicked");
     var addressValue = $("#approve-distributor-page #address-value").val();
 
-      App.contracts.vote.deployed().then(function (instance) {
-        appApproveUserInstance = instance;
-
-        return appApproveUserInstance.approveDistributor(addressValue, {from : App.currentAccount}); // added from parameter
-      }).then(function (result, err) {
-        if (result) {
-          console.log(result.receipt.status);
-          if (parseInt(result.receipt.status) == 1)
-            toastr.info("Distributor as been approved", "", { "iconClass": 'toast-info notification0' });
-          else
-            toastr["error"]("Error in approving user. Transaction Reverted!");
-        } else {
-          toastr["error"]("Transaction Failed!");
-        }
-      }).catch(function (err) {
-        toastr["error"]("Transaction Failed!");
-      });
+	App.contracts.vote.methods.approveDistributor(addressValue).send({from : App.currentAccount[0]})
+	.on('receipt',(receipt)=>{
+		if ((receipt.status) )
+			toastr.info("Distributor as been approved", "", { "iconClass": 'toast-info notification0' });
+		else
+			toastr["error"]("Error in approving user. Transaction Reverted!");
+		})
+	.on('transactionHash', function(hash){
+	}).on('error',(e)=>{
+		toastr["error"]("Transaction Failed!");
+	})
   },
 
   handleApproveUser: function () {
     console.log("button clicked");
     event.preventDefault();
-    var addressValue = $("#address-value").val();
+    var addressValue = $("#approve-user-address-value").val();
 
-      App.contracts.vote.deployed().then(function (instance) {
-        appApproveUserInstance = instance;
+      App.contracts.vote.methods.approveUser(addressValue).send({from : App.currentAccount[0]})
+		.on('receipt',(receipt)=>{
+			if ((receipt.status) )
+            	toastr.info("User as been approved", "", { "iconClass": 'toast-info notification0' });
+			else
+				toastr["error"]("Error in approving user. Transaction Reverted!");
+			})
+		.on('transactionHash', function(hash){
+		}).on('error',(e)=>{
+			toastr["error"]("Transaction Failed!");
+		})
 
-        return appApproveUserInstance.approveUser(addressValue, {from : App.currentAccount}); // added from parameter
-      }).then(function (result, err) {
-        if (result) {
-          console.log(result.receipt.status);
-          if (parseInt(result.receipt.status) == 1)
-            toastr.info("User as been approved", "", { "iconClass": 'toast-info notification0' });
-          else
-            toastr["error"]("Error in approving user. Transaction Reverted!");
-        } else {
-          toastr["error"]("Transaction Failed!");
-        }
-      }).catch(function (err) {
-        toastr["error"]("Transaction Failed!");
-      });
   },
   
   handleGetAllCertificates: function () {
     console.log("button clicked");
-    App.contracts.vote.deployed().then(function (instance) {
-      getAllCertificatesInstance = instance;
-      return getAllCertificatesInstance.getAllCertificates({from:App.currentAccount});  // added from parameter
-    }).then(function (res) {
-      console.log(res);
-        if (result) {
-          console.log(result.receipt.status);
-          if (parseInt(result.receipt.status) == 1)
-            toastr.info("Fetched all the certificates", "", { "iconClass": 'toast-info notification0' });
-          else
-            toastr["error"]("Error in fetching all the certificates. Transaction Reverted!");
-        } else {
-          toastr["error"]("Transaction Failed!");
-        }
-    }).catch(function (err) {
-        toastr["error"]("Transaction Failed!");
-    })
+	App.contracts.vote.methods.recCount().call().then((length)=>{        
+			for(var i=0;i<length;i++){
+				App.contracts.vote.methods.recs(i).call()
+					.then((r)=>{
+						App.contracts.vote.methods.ownerOf(r.id).call().then((result)=>{
+							App.contracts.vote.methods.assetApprovals(r.id).call().then((res)=>{
+							if(res==0){
+							res='None'
+							} 
+							
+							var card='<div class="col-lg-3"><div class="card">'+
+							'<div class="card-body">'+
+							'<h6 class="card-title">Asset # '+r.id+'</h6>'+
+							'<p class="card-text">Price: '+r.price+' ETH </p></div>'+              
+							'<div class="card-footer">'+'<small><b>Owner:</b> '+result+'<br><b>Approved:</b> '+res+'</small></div></div></div>';            
+							$('#assets').append(card);
+							})  
+						})
+					})
+			}
+	
+		  })
   },
   
   handleGetCertificate: function () {
-    console.log("button clicked");
-    var idValue = $("#id-value").val();
-    App.contracts.vote.deployed().then(function (instance) {
-      getCertificateInstance = instance;
-      return getCertificateInstance.getCertificate(idValue, {from:App.currentAccount});  // added from parameter
-    }).then(function (res) {
-      console.log(res);
-        if (result) {
-          console.log(result.receipt.status);
-          if (parseInt(result.receipt.status) == 1)
-            toastr.info("Fetched the certificate with the given id", "", { "iconClass": 'toast-info notification0' });
-          else
-            toastr["error"]("Error in fetching the certificate with the given id. Transaction Reverted!");
-        } else {
-          toastr["error"]("Transaction Failed!");
-        }
-    }).catch(function (err) {
-        toastr["error"]("Transaction Failed!");
-    })
+    // console.log("button clicked");
+    // var idValue = $("#id-value").val();
+    // App.contracts.vote.deployed().then(function (instance) {
+    //   getCertificateInstance = instance;
+    //   return getCertificateInstance.getCertificate(idValue, {from:App.currentAccount[0]});  // added from parameter
+    // }).then(function (res) {
+    //   console.log(res);
+    //     if (result) {
+    //       console.log(result.receipt.status);
+    //       if (parseInt(result.receipt.status) == 1)
+    //         toastr.info("Fetched the certificate with the given id", "", { "iconClass": 'toast-info notification0' });
+    //       else
+    //         toastr["error"]("Error in fetching the certificate with the given id. Transaction Reverted!");
+    //     } else {
+    //       toastr["error"]("Transaction Failed!");
+    //     }
+    // }).catch(function (err) {
+    //     toastr["error"]("Transaction Failed!");
+    // })
   },
 
   handleGetCertificatesOfUser: function () {
-    console.log("button clicked");
-    var addressValue = $("#address-value").val();
-    App.contracts.vote.deployed().then(function (instance) {
-      getCertificatesOfUserInstance = instance;
-      return getCertificatesOfUserInstance.getCertificatesOfUser(addressValue, {from:App.currentAccount});  // added from parameter
-    }).then(function (res) {
-      console.log(res);
-        if (result) {
-          console.log(result.receipt.status);
-          if (parseInt(result.receipt.status) == 1)
-            toastr.info("Fetched the certificates of user", "", { "iconClass": 'toast-info notification0' });
-          else
-            toastr["error"]("Error in fetching the certificates of user. Transaction Reverted!");
-        } else {
-          toastr["error"]("Transaction Failed!");
-        }
-    }).catch(function (err) {
-        toastr["error"]("Transaction Failed!");
-    })
+    // console.log("button clicked");
+    // var addressValue = $("#address-value").val();
+    // App.contracts.vote.deployed().then(function (instance) {
+    //   getCertificatesOfUserInstance = instance;
+    //   return getCertificatesOfUserInstance.getCertificatesOfUser(addressValue, {from:App.currentAccount[0]});  // added from parameter
+    // }).then(function (res) {
+    //   console.log(res);
+    //     if (result) {
+    //       console.log(result.receipt.status);
+    //       if (parseInt(result.receipt.status) == 1)
+    //         toastr.info("Fetched the certificates of user", "", { "iconClass": 'toast-info notification0' });
+    //       else
+    //         toastr["error"]("Error in fetching the certificates of user. Transaction Reverted!");
+    //     } else {
+    //       toastr["error"]("Transaction Failed!");
+    //     }
+    // }).catch(function (err) {
+    //     toastr["error"]("Transaction Failed!");
+    // })
   },
 
   handleVerifyREC: function () {
@@ -393,7 +366,7 @@ handleRegister: function(){
     var idValue = $("#id-value").val();
     App.contracts.vote.deployed().then(function (instance) {
       verifyRECInstance = instance;
-      return verifyRECInstance.verifyREC(idValue, {from:App.currentAccount});  // added from parameter
+      return verifyRECInstance.verifyREC(idValue, {from:App.currentAccount[0]});  // added from parameter
     }).then(function (res) {
       console.log(res);
         if (result) {
@@ -415,7 +388,7 @@ handleRegister: function(){
     var idValue = $("#id-value").val();
     App.contracts.vote.deployed().then(function (instance) {
       sellRECInstance = instance;
-      return sellRECInstance.sellREC(idValue, {from:App.currentAccount});  // added from parameter
+      return sellRECInstance.sellREC(idValue, {from:App.currentAccount[0]});  // added from parameter
     }).then(function (res) {
       console.log(res);
         if (result) {
@@ -434,36 +407,42 @@ handleRegister: function(){
   
   handleBuyREC: function () {
     console.log("button clicked");
-    var idValue = $("#id-value").val();
-    App.contracts.vote.deployed().then(function (instance) {
-      buyRECInstance = instance;
-      return buyRECInstance.buyREC({from:App.currentAccount});  // added from parameter
-    }).then(function (res) {
-      console.log(res);
-        if (result) {
-          console.log(result.receipt.status);
-          if (parseInt(result.receipt.status) == 1)
+    var assetId = $("#id-value").val();
+	var fromAddress = jQuery('#from_address').val()
+
+	App.contracts.vote.methods.recOwner(assetId)
+      .call()
+      .then((r)=>{
+        console.log(r);
+        var option= r.price.toString();
+        assetId=parseInt(assetId);
+        App.contracts.vote.methods.transferFrom(fromAddress,assetId)
+        .send({from:App.currentAccount[0],value: Web3.utils.toWei(option)})
+        .on('receipt',(receipt)=>{
+          console.log(receipt)
+		  if (receipt.status)
             toastr.info("REC as been verified", "", { "iconClass": 'toast-info notification0' });
           else
             toastr["error"]("Error in buying the REC. Transaction Reverted!");
-        } else {
-          toastr["error"]("Transaction Failed!");
-        }
-    }).catch(function (err) {
-        toastr["error"]("Transaction Failed!");
-    })
+        })
+        .on('transactionHash',(hash)=>{
+        //   location.reload()
+        //   App.fetchAllAssets();
+          
+        }).on('error',(e)=>{
+          console.log(e)
+		  toastr["error"]("Transaction Failed!");
+
+        })
+      })
   },  
   
   handleTopUpBalance: function () {
     console.log("button clicked");
-    App.contracts.vote.deployed().then(function (instance) {
-      topUpBalanceInstance = instance;
-      return topUpBalanceInstance.topUpBalanceREC({from:App.currentAccount});  // added from parameter
-    }).then(function (res) {
-      console.log(res);
-        if (result) {
-          console.log(result.receipt.status);
-          if (parseInt(result.receipt.status) == 1)
+    App.contracts.vote.methods.topUpBalanceREC().send({from:App.currentAccount[0]})
+	.on('receipt',(receipt)=>{
+        if (receipt) {
+          if (receipt.status)
             toastr.info("Balance has been topped up", "", { "iconClass": 'toast-info notification0' });
           else
             toastr["error"]("Error in updating balance. Transaction Reverted!");
