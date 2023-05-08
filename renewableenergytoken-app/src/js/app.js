@@ -3,7 +3,7 @@ App = {
   contracts: {},
   names: new Array(),
   address: '0xc11C53e8B2c362b16725049EfeC997289Daa6194',
-  url: 'https://sepolia.infura.io/v3/494c9da53f6e42b7b738056dfcc011f7',
+  url: 'https://sepolia.infura.io/v3/',
   network_id: 11155111,
   chairPerson: null,
   currentAccount: null,
@@ -29,7 +29,7 @@ App = {
   initContract: async function () {
 	App.currentAccount = await ethereum.request({method: 'eth_accounts'});  
 	$.getJSON('RenewableEnergyToken.json', function(data) {      
-	  App.contracts.vote = new App.web3.eth.Contract(data.abi, data.networks[App.network_id].address, {});
+	  App.contracts.vote = new App.web3.eth.Contract(data.abi, App.address, {});
 	  App.contracts.vote.methods.owner()
 	  .call()
 	  .then((r)=>{
