@@ -1,0 +1,80 @@
+truffle migrate --network sepolia
+
+Compiling your contracts...
+===========================
+There was an error attempting to save the compiler to disk. The current user likely does not have sufficient permissions to write to disk in Truffle's compiler cache directory. See the errorprinted below for more information about this directory.
+Error: EACCES: permission denied, open '/Users/sandeepkunusoth/Library/Preferences/truffle-nodejs/compilers/node_modules/solc-emscripten-wasm32-v0.8.1+commit.df193b15.js'
+There was an error attempting to save the compiler to disk. The current user likely does not have sufficient permissions to write to disk in Truffle's compiler cache directory. See the errorprinted below for more information about this directory.
+Error: EACCES: permission denied, open '/Users/sandeepkunusoth/Library/Preferences/truffle-nodejs/compilers/node_modules/solc-emscripten-wasm32-v0.8.1+commit.df193b15.js'
+> Everything is up to date, there is nothing to compile.
+⠸ Fetching solc version list from solc-bin. Attempt #1
+⠦ Fetching solc version list from solc-bin. Attempt #1
+Starting migrations.... Attempt #1.
+======================
+> Network name:    'sepolia'
+> Network id:      11155111
+> Block gas limit: 30000000 (0x1c9c380)
+
+
+1_initial_migration.js
+======================
+⠼ Fetching solc version list from solc-bin. Attempt #1
+   Deploying 'Migrations'ttempt #1.
+   ----------------------
+   > transaction hash:    0x6004d1e9c577d389375b3286da35a37d675956b8d114942761c1a0f6ed24fa94
+   > Blocks: 0            Seconds: 8lc-bin. Attempt #1
+   > contract address:    0xFbF3493d45436841F82dB61e1D9B3bAC25D12A51
+   > block number:        3445892: 8
+   > block timestamp:     1683581112
+   > account:             0x1261Daa4EB46aC67A9AF5cA626e7F63cc9A6D90d
+   > balance:             0.486776302462973647
+   > gas used:            271764 (0x42594)
+   > gas price:           2.500000007 gwei
+   > value sent:          0 ETH
+   > total cost:          0.000679410001902348 ETH
+
+   Pausing for 2 confirmations...
+
+   -------------------------------
+   > confirmation number: 1 (block: 3445893)Attempt #1
+   > confirmation number: 2 (block: 3445894)Attempt #1
+   > Saving migration to chain.om solc-bin. Attempt #1
+   > Saving artifactsr. Attempt #1.
+   -------------------------------------
+   > Total cost:     0.000679410001902348 ETH
+
+⠴ Fetching solc version list from solc-bin. Attempt #1
+2_deploy_contracts.jsr. Attempt #1.
+=====================
+⠴ Fetching solc version list from solc-bin. Attempt #1
+   Deploying 'RenewableEnergyToken'
+   --------------------------------
+   > transaction hash:    0xeb4ebf82ddd5463db4209fbd48a2463d13748af8b240dd26e184e80b52e6c839
+   > Blocks: 1            Seconds: 12c-bin. Attempt #1
+   > contract address:    0x96D9534e84F2f26ABd7D2132B0A0F16dc7eD2dec
+   > block number:        3445896: 12
+   > block timestamp:     1683581160
+   > account:             0x1261Daa4EB46aC67A9AF5cA626e7F63cc9A6D90d
+   > balance:             0.475045532430127491
+   > gas used:            4646370 (0x46e5e2)
+   > gas price:           2.500000007 gwei
+   > value sent:          0 ETH
+   > total cost:          0.01161592503252459 ETH
+
+   Pausing for 2 confirmations...
+
+   -------------------------------
+   > confirmation number: 1 (block: 3445897)Attempt #1
+   > confirmation number: 2 (block: 3445898)Attempt #1
+   > Saving migration to chain.om solc-bin. Attempt #1
+   > Saving artifactsr. Attempt #1.
+   -------------------------------------
+   > Total cost:     0.01161592503252459 ETH
+
+Summary
+=======
+> Total deployments:   2
+> Final cost:          0.012295335034426938 ETH
+
+
+(base) ➜  renewableenergytoken-contract git:(main) ✗ 

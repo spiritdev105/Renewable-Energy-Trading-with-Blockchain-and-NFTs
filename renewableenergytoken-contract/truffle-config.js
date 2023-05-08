@@ -46,7 +46,7 @@
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
-const infuraKey = "494c9da53f6e42b7b738056dfcc011f7";
+const infuraKey = "d400ed5943ea481e91c5ddbe5d556c38";
 
 const mnemonic = "oppose drop provide prison session rent actress popular random property pride puzzle";
 
@@ -110,7 +110,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.5.16",      // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.8.1",      // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
