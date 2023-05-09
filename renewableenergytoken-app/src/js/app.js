@@ -2,7 +2,7 @@ App = {
   web3: null,
   contracts: {},
   names: new Array(),
-  address: '0xA42493C333a46a0EDEfc3f7EFE1C8686f3e96D7D',
+  address: '0xc0D8d342c991d6b38C0cB4569B953d1c80384940',
   url: 'https://sepolia.infura.io/v3/d400ed5943ea481e91c5ddbe5d556c38',
   network_id: 11155111,
   chairPerson: "0x1261Daa4EB46aC67A9AF5cA626e7F63cc9A6D90d",
@@ -293,7 +293,7 @@ handleRegister: function(){
     var quantityValue = $("#create-rec-quantity-value").val();
     var priceValue = $("#create-rec-price-value").val();
 
-	App.contracts.vote.methods.generateREC(nameValue, quantityValue, addressValue).send({value:Web3.utils.toWei(priceValue, 'ether'), from : App.currentAccount[0]})
+	App.contracts.vote.methods.generateREC(nameValue, quantityValue, addressValue).send({value:Web3.utils.toWei(priceValue), from : App.currentAccount[0]})
 	.on('receipt',(receipt)=>{
 		console.log(receipt)
 	})
@@ -368,7 +368,7 @@ handleRegister: function(){
 								'<div class="card-header">'+ r.name+'</div>' +
 								'<div class="card-body">'+
 								'<h6 class="card-title">Asset # '+r.id+'</h6>'+
-								'<p class="card-text">Price: '+r.price+' ETH </p></div>'+              
+								'<p class="card-text">Price: '+ Web3.utils.fromWei(r.price.toString(), 'ether')+' ETH </p></div>'+              
 								'<div class="card-footer">'+'<small><b>Owner:</b> '+result+'<br><b>Approved:</b> '+res+'</small></div>' +
 								'</div></div>';         
 								} else {
@@ -376,7 +376,7 @@ handleRegister: function(){
 									'<div class="card-header">'+ r.name+'</div>' +
 									'<div class="card-body">'+
 									'<h6 class="card-title">Asset # '+r.id+'</h6>'+
-									'<p class="card-text">Price: '+r.price+' ETH </p></div>'+              
+									'<p class="card-text">Price: '+ Web3.utils.fromWei(r.price.toString(), 'ether')+' ETH </p></div>'+              
 									'<div class="card-footer">'+'<small><b>Owner:</b> '+result+'<br><b>Approved:</b> '+res+'</small></div>' +
 									'</div></div>'; 
 								}
@@ -426,7 +426,7 @@ handleRegister: function(){
 		document.getElementById("get-certificate-page-name-value").value = rec[1];
 		document.getElementById("get-certificate-page-address-value").value = rec[4];
 		document.getElementById("get-certificate-page-quantity-value").value = rec[2];
-		document.getElementById("get-certificate-page-price-value").value = rec[3];
+		document.getElementById("get-certificate-page-price-value").value =  Web3.utils.fromWei(rec[3].toString(), 'ether');
 		// toastr.info("Fetched the certificate with the given id", "", { "iconClass": 'toast-info notification0' });
 	}).catch(function (err) {
         toastr["error"]("Transaction Failed!");
@@ -450,7 +450,7 @@ handleRegister: function(){
 								'<div class="card-header">'+ r.name+'</div>' +
 								'<div class="card-body">'+
 								'<h6 class="card-title">Asset # '+r.id+'</h6>'+
-								'<p class="card-text">Price: '+r.price+' ETH </p></div>'+              
+								'<p class="card-text">Price: '+Web3.utils.fromWei(r.price.toString(), 'ether')+' ETH </p></div>'+              
 								'<div class="card-footer">'+'<small><b>Owner:</b> '+result+'<br><b>Approved:</b> '+res+'</small></div>' +
 								'</div></div>';         
 								} else {
@@ -458,7 +458,7 @@ handleRegister: function(){
 									'<div class="card-header">'+ r.name+'</div>' +
 									'<div class="card-body">'+
 									'<h6 class="card-title">Asset # '+r.id+'</h6>'+
-									'<p class="card-text">Price: '+r.price+' ETH </p></div>'+              
+									'<p class="card-text">Price: '+Web3.utils.fromWei(r.price.toString(), 'ether')+' ETH </p></div>'+              
 									'<div class="card-footer">'+'<small><b>Owner:</b> '+result+'<br><b>Approved:</b> '+res+'</small></div>' +
 									'</div></div>'; 
 								}
