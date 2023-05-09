@@ -5,7 +5,8 @@ App = {
   address: '0x96D9534e84F2f26ABd7D2132B0A0F16dc7eD2dec',
   url: 'https://sepolia.infura.io/v3/d400ed5943ea481e91c5ddbe5d556c38',
   network_id: 11155111,
-  chairPerson: null,
+  chairPerson: "0x1261Daa4EB46aC67A9AF5cA626e7F63cc9A6D90d",
+  currentAccounts: null,
   currentAccount: null,
   currentAccountRole: null,
 
@@ -26,10 +27,18 @@ App = {
       return App.initContract();
   },
 
+  getAccounts: async function() {
+	const addressListJson = localStorage.getItem('addressList');
+	let addressList = addressListJson ? JSON.parse(addressListJson) : [];
+
+	App.currentAccounts = addressList;
+  },
+
   initContract: async function () {
 	App.currentAccount = await ethereum.request({method: 'eth_accounts'});  
 	$.getJSON('RenewableEnergyToken.json', function(data) {      
 	  App.contracts.vote = new App.web3.eth.Contract(data.abi, App.address, {});
+	  App.getAccounts();
 	  App.contracts.vote.methods.owner()
 	  .call()
 	  .then((r)=>{
@@ -224,29 +233,36 @@ App = {
   },
 
   populateAddress: function () {
-	new Web3(App.url).eth.getAccounts((err, accounts) => {
-        // console.log(accounts[0]);
-        var option='<option></option>';
-        for(var i=0;i<accounts.length;i++){
-          option+='<option>'+accounts[i]+'</option>'; 
-        }
-        jQuery('#asset_owner').append(option);
-        jQuery('#sell-rec-to_address').append(option);
-		jQuery('#create-rec-address-value').append(option);
-        jQuery('#from_address').append(option);
-		jQuery('#approve-user-address-value').append(option);
-		jQuery('#approve-distributor-address-value').append(option);
-
-      });
+	App.getAccounts();
+	// console.log(accounts[0]);
+	var option='<option></option>';
+	for(var i=0;i<App.currentAccounts.length;i++){
+		option+='<option>'+App.currentAccounts[i]+'</option>'; 
+	}
+	jQuery('#asset_owner').append(option);
+	jQuery('#sell-rec-to_address').append(option);
+	jQuery('#create-rec-address-value').append(option);
+	jQuery('#from_address').append(option);
+	jQuery('#approve-user-address-value').append(option);
+	jQuery('#approve-distributor-address-value').append(option);
   },
 
   getUserRole: function() {
 	App.contracts.vote.methods.getUserRole(App.currentAccount[0]).call().then((result)=>{
 		App.currentAccountRole = result;
+		App.addAddress(App.currentAccount[0]);
 		jQuery('#current_account_role').text(App.currentAccountRole);
 		App.resetNav(document);
 	})
   },
+
+addAddress: function(addressValue) {
+		const addressSetJson = localStorage.getItem('addressList');
+		let addressSet = addressSetJson ? new Set(JSON.parse(addressSetJson)) : new Set();
+
+		addressSet.add(addressValue);
+		localStorage.setItem('addressList', JSON.stringify([...addressSet]));
+},
 
 handleRegister: function(){ 
 	console.log("button clicked");
@@ -257,7 +273,9 @@ handleRegister: function(){
 	  .on('receipt',(receipt)=>{
 		if ((receipt.status) ) {
             toastr.info("New User Request has been sent for approval", "", { "iconClass": 'toast-info notification0' });
+			addAddress(addressValue);
 			location.reload()
+
 		 } else
             toastr["error"]("Error in approving user. Transaction Reverted!");
         })
@@ -480,7 +498,8 @@ handleRegister: function(){
     console.log("button clicked");
     var idValue = $("#sell-rec-id-value").val();
 	var toAddress = jQuery('#sell-rec-to_address').val()
-	App.currentAccount = await ethereum.request({method: 'eth_accounts'});
+	// App.currentAccounts = await ethereum.request({method: 'eth_accounts'});
+	App.getAccounts();
       var option={from:App.currentAccount[0], gasLimit: "1000000"};
       App.contracts.vote.methods.approve(toAddress,parseInt(idValue))
       .send(option)
@@ -501,7 +520,8 @@ handleRegister: function(){
   },
   
   handleBuyREC: async function () {
-	App.currentAccount = await ethereum.request({method: 'eth_accounts'});
+	// App.currentAccount = await ethereum.request({method: 'eth_accounts'});
+	App.getAccounts();
     console.log("button clicked");
     var assetId = $("#buy-rec-id-value").val();
 	var fromAddress = jQuery('#from_address').val()

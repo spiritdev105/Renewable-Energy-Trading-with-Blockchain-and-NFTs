@@ -42,6 +42,7 @@ contract RenewableEnergyToken is ERC721 {
 
     constructor() ERC721("RenewableEnergyToken", "RET") {
         owner = msg.sender;
+		addressList.push(owner);
     }
 
     modifier onlyOwner() {
@@ -156,6 +157,9 @@ contract RenewableEnergyToken is ERC721 {
         recCount = recCount+1;
     }
 
+	function getAddressList() public view returns (address[] memory) {
+        return addressList;
+    }
 
 	function getCertificate(uint id) public view onlyRegistered returns (uint, string memory, uint, uint,address, Status) {
         REC memory rec = recs[id];
