@@ -2,7 +2,7 @@ App = {
   web3: null,
   contracts: {},
   names: new Array(),
-  address: '0xa55d53481B7e4042896c40fd00a3E523eC6acA5E',
+  address: '0xA42493C333a46a0EDEfc3f7EFE1C8686f3e96D7D',
   url: 'https://sepolia.infura.io/v3/d400ed5943ea481e91c5ddbe5d556c38',
   network_id: 11155111,
   chairPerson: "0x1261Daa4EB46aC67A9AF5cA626e7F63cc9A6D90d",
