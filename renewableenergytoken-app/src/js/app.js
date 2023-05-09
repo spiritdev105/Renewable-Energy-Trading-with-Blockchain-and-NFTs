@@ -2,7 +2,7 @@ App = {
   web3: null,
   contracts: {},
   names: new Array(),
-  address: '0x96D9534e84F2f26ABd7D2132B0A0F16dc7eD2dec',
+  address: '0xa55d53481B7e4042896c40fd00a3E523eC6acA5E',
   url: 'https://sepolia.infura.io/v3/d400ed5943ea481e91c5ddbe5d556c38',
   network_id: 11155111,
   chairPerson: "0x1261Daa4EB46aC67A9AF5cA626e7F63cc9A6D90d",
@@ -293,7 +293,7 @@ handleRegister: function(){
     var quantityValue = $("#create-rec-quantity-value").val();
     var priceValue = $("#create-rec-price-value").val();
 
-	App.contracts.vote.methods.generateREC(nameValue, quantityValue, priceValue, addressValue).send({value:Web3.utils.toWei(priceValue), from : App.currentAccount[0]})
+	App.contracts.vote.methods.generateREC(nameValue, quantityValue, addressValue).send({value:Web3.utils.toWei("0.1"), from : App.currentAccount[0]})
 	.on('receipt',(receipt)=>{
 		console.log(receipt)
 	})
@@ -555,7 +555,7 @@ handleRegister: function(){
   handleTopUpBalance: function () {
     console.log("button clicked");
     var priceValue = $("#top-up-price-value").val();
-    App.contracts.vote.methods.topupBalance().send({from:App.currentAccount[0], value: priceValue})
+    App.contracts.vote.methods.topupBalance().send({from:App.currentAccount[0], value: priceValue.toString()})
 	.on('receipt',(receipt)=>{
         if (receipt) {
           if (receipt.status)

@@ -20,7 +20,7 @@ contract RenewableEnergyToken is ERC721 {
         uint id;
         string name;
         uint quantity;
-        uint price;
+        uint256 price;
         Status status;
     }
 
@@ -148,10 +148,10 @@ contract RenewableEnergyToken is ERC721 {
     }
 
     //REC functions
-    function generateREC(string memory name, uint quantity, uint price, address sellerAddress) public onlyDistributor payable {
-        require(bytes(name).length > 0 && quantity > 0 && price > 0 && sellerAddress!=address(0), "Invalid input parameters");
+    function generateREC(string memory name, uint quantity, address sellerAddress) public onlyDistributor payable {
+        require(bytes(name).length > 0 && quantity > 0 && msg.value > 0 && sellerAddress!=address(0), "Invalid input parameters");
 
-        recs[recCount] =  REC(recCount, name, quantity, price, Status.Available);
+        recs[recCount] =  REC(recCount, name, quantity, msg.value, Status.Available);
         
         mint(sellerAddress,recCount);
         recCount = recCount+1;
