@@ -46,7 +46,7 @@
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
-const infuraKey = "d400ed5943ea481e91c5ddbe5d556c38";
+const infuraKey = "3fc60b1b45c1433f8ee141fc8f751a7a";
 
 const mnemonic = "oppose drop provide prison session rent actress popular random property pride puzzle";
 
