@@ -293,7 +293,7 @@ handleRegister: function(){
     var quantityValue = $("#create-rec-quantity-value").val();
     var priceValue = $("#create-rec-price-value").val();
 
-	App.contracts.vote.methods.generateREC(nameValue, quantityValue, addressValue).send({value:Web3.utils.toWei("0.1"), from : App.currentAccount[0]})
+	App.contracts.vote.methods.generateREC(nameValue, quantityValue, addressValue).send({value:Web3.utils.toWei(priceValue, 'ether'), from : App.currentAccount[0]})
 	.on('receipt',(receipt)=>{
 		console.log(receipt)
 	})
