@@ -1,9 +1,9 @@
 {
   "contractName": "Math",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"Standard math utilities missing in the Solidity language.\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@openzeppelin/contracts/utils/math/Math.sol\":\"Math\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/utils/math/Math.sol\":{\"keccak256\":\"0xa1e8e83cd0087785df04ac79fb395d9f3684caeaf973d9e2c71caef723a3a5d6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://33bbf48cc069be677705037ba7520c22b1b622c23b33e1a71495f2d36549d40b\",\"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz\"]}},\"version\":1}",
-  "bytecode": "0x60566050600b82828239805160001a6073146043577f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212206e1c4cd965bc5b6bc4ac36fcfa8335701835f8f13d24a138d10d799a9389425864736f6c63430008130033",
-  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212206e1c4cd965bc5b6bc4ac36fcfa8335701835f8f13d24a138d10d799a9389425864736f6c63430008130033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.1+commit.df193b15\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"Standard math utilities missing in the Solidity language.\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"@openzeppelin/contracts/utils/math/Math.sol\":\"Math\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/utils/math/Math.sol\":{\"keccak256\":\"0xa1e8e83cd0087785df04ac79fb395d9f3684caeaf973d9e2c71caef723a3a5d6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://33bbf48cc069be677705037ba7520c22b1b622c23b33e1a71495f2d36549d40b\",\"dweb:/ipfs/Qmct36zWXv3j7LZB83uwbg7TXwnZSN1fqHNDZ93GG98bGz\"]}},\"version\":1}",
+  "bytecode": "0x60566050600b82828239805160001a6073146043577f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212200beb40c10767a43124ec6d866442df5a4f498fecee2511226d714fde930a8cb664736f6c63430008010033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212200beb40c10767a43124ec6d866442df5a4f498fecee2511226d714fde930a8cb664736f6c63430008010033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
@@ -36,7 +36,6 @@
       {
         "abstract": false,
         "baseContracts": [],
-        "canonicalName": "Math",
         "contractDependencies": [],
         "contractKind": "library",
         "documentation": {
@@ -51,7 +50,6 @@
           2515
         ],
         "name": "Math",
-        "nameLocation": "210:4:9",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
@@ -61,27 +59,23 @@
               {
                 "id": 1654,
                 "name": "Down",
-                "nameLocation": "245:4:9",
                 "nodeType": "EnumValue",
                 "src": "245:4:9"
               },
               {
                 "id": 1655,
                 "name": "Up",
-                "nameLocation": "287:2:9",
                 "nodeType": "EnumValue",
                 "src": "287:2:9"
               },
               {
                 "id": 1656,
                 "name": "Zero",
-                "nameLocation": "318:4:9",
                 "nodeType": "EnumValue",
                 "src": "318:4:9"
               }
             ],
             "name": "Rounding",
-            "nameLocation": "226:8:9",
             "nodeType": "EnumDefinition",
             "src": "221:122:9"
           },
@@ -189,7 +183,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "max",
-            "nameLocation": "422:3:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 1663,
@@ -200,7 +193,6 @@
                   "id": 1660,
                   "mutability": "mutable",
                   "name": "a",
-                  "nameLocation": "434:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1675,
                   "src": "426:9:9",
@@ -227,7 +219,6 @@
                   "id": 1662,
                   "mutability": "mutable",
                   "name": "b",
-                  "nameLocation": "445:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1675,
                   "src": "437:9:9",
@@ -261,7 +252,6 @@
                   "id": 1665,
                   "mutability": "mutable",
                   "name": "",
-                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 1675,
                   "src": "471:7:9",
@@ -396,7 +386,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "min",
-            "nameLocation": "597:3:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 1681,
@@ -407,7 +396,6 @@
                   "id": 1678,
                   "mutability": "mutable",
                   "name": "a",
-                  "nameLocation": "609:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1693,
                   "src": "601:9:9",
@@ -434,7 +422,6 @@
                   "id": 1680,
                   "mutability": "mutable",
                   "name": "b",
-                  "nameLocation": "620:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1693,
                   "src": "612:9:9",
@@ -468,7 +455,6 @@
                   "id": 1683,
                   "mutability": "mutable",
                   "name": "",
-                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 1693,
                   "src": "646:7:9",
@@ -692,7 +678,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "average",
-            "nameLocation": "814:7:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 1699,
@@ -703,7 +688,6 @@
                   "id": 1696,
                   "mutability": "mutable",
                   "name": "a",
-                  "nameLocation": "830:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1716,
                   "src": "822:9:9",
@@ -730,7 +714,6 @@
                   "id": 1698,
                   "mutability": "mutable",
                   "name": "b",
-                  "nameLocation": "841:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1716,
                   "src": "833:9:9",
@@ -764,7 +747,6 @@
                   "id": 1701,
                   "mutability": "mutable",
                   "name": "",
-                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 1716,
                   "src": "867:7:9",
@@ -1021,7 +1003,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "ceilDiv",
-            "nameLocation": "1166:7:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 1722,
@@ -1032,7 +1013,6 @@
                   "id": 1719,
                   "mutability": "mutable",
                   "name": "a",
-                  "nameLocation": "1182:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1741,
                   "src": "1174:9:9",
@@ -1059,7 +1039,6 @@
                   "id": 1721,
                   "mutability": "mutable",
                   "name": "b",
-                  "nameLocation": "1193:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1741,
                   "src": "1185:9:9",
@@ -1093,7 +1072,6 @@
                   "id": 1724,
                   "mutability": "mutable",
                   "name": "",
-                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 1741,
                   "src": "1219:7:9",
@@ -1145,7 +1123,6 @@
                           "id": 1754,
                           "mutability": "mutable",
                           "name": "prod0",
-                          "nameLocation": "2134:5:9",
                           "nodeType": "VariableDeclaration",
                           "scope": 1861,
                           "src": "2126:13:9",
@@ -1182,7 +1159,6 @@
                           "id": 1757,
                           "mutability": "mutable",
                           "name": "prod1",
-                          "nameLocation": "2206:5:9",
                           "nodeType": "VariableDeclaration",
                           "scope": 1861,
                           "src": "2198:13:9",
@@ -1363,7 +1339,7 @@
                           }
                         ]
                       },
-                      "evmVersion": "paris",
+                      "evmVersion": "istanbul",
                       "externalReferences": [
                         {
                           "declaration": 1754,
@@ -1605,7 +1581,6 @@
                         "isPure": false,
                         "kind": "functionCall",
                         "lValueRequested": false,
-                        "nameLocations": [],
                         "names": [],
                         "nodeType": "FunctionCall",
                         "src": "2689:28:9",
@@ -1629,7 +1604,6 @@
                           "id": 1776,
                           "mutability": "mutable",
                           "name": "remainder",
-                          "nameLocation": "2981:9:9",
                           "nodeType": "VariableDeclaration",
                           "scope": 1861,
                           "src": "2973:17:9",
@@ -1780,7 +1754,7 @@
                           }
                         ]
                       },
-                      "evmVersion": "paris",
+                      "evmVersion": "istanbul",
                       "externalReferences": [
                         {
                           "declaration": 1748,
@@ -1874,7 +1848,6 @@
                           "id": 1780,
                           "mutability": "mutable",
                           "name": "twos",
-                          "nameLocation": "3619:4:9",
                           "nodeType": "VariableDeclaration",
                           "scope": 1861,
                           "src": "3611:12:9",
@@ -2147,7 +2120,7 @@
                           }
                         ]
                       },
-                      "evmVersion": "paris",
+                      "evmVersion": "istanbul",
                       "externalReferences": [
                         {
                           "declaration": 1748,
@@ -2300,7 +2273,6 @@
                           "id": 1797,
                           "mutability": "mutable",
                           "name": "inverse",
-                          "nameLocation": "4456:7:9",
                           "nodeType": "VariableDeclaration",
                           "scope": 1861,
                           "src": "4448:15:9",
@@ -3171,7 +3143,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "mulDiv",
-            "nameLocation": "1676:6:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 1749,
@@ -3182,7 +3153,6 @@
                   "id": 1744,
                   "mutability": "mutable",
                   "name": "x",
-                  "nameLocation": "1700:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1863,
                   "src": "1692:9:9",
@@ -3209,7 +3179,6 @@
                   "id": 1746,
                   "mutability": "mutable",
                   "name": "y",
-                  "nameLocation": "1719:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1863,
                   "src": "1711:9:9",
@@ -3236,7 +3205,6 @@
                   "id": 1748,
                   "mutability": "mutable",
                   "name": "denominator",
-                  "nameLocation": "1738:11:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1863,
                   "src": "1730:19:9",
@@ -3270,7 +3238,6 @@
                   "id": 1751,
                   "mutability": "mutable",
                   "name": "result",
-                  "nameLocation": "1787:6:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1863,
                   "src": "1779:14:9",
@@ -3317,7 +3284,6 @@
                       "id": 1879,
                       "mutability": "mutable",
                       "name": "result",
-                      "nameLocation": "5890:6:9",
                       "nodeType": "VariableDeclaration",
                       "scope": 1906,
                       "src": "5882:14:9",
@@ -3415,7 +3381,6 @@
                     "isPure": false,
                     "kind": "functionCall",
                     "lValueRequested": false,
-                    "nameLocations": [],
                     "names": [],
                     "nodeType": "FunctionCall",
                     "src": "5899:25:9",
@@ -3481,10 +3446,8 @@
                         "isLValue": false,
                         "isPure": true,
                         "lValueRequested": false,
-                        "memberLocation": "5959:2:9",
                         "memberName": "Up",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1655,
                         "src": "5950:11:9",
                         "typeDescriptions": {
                           "typeIdentifier": "t_enum$_Rounding_$1657",
@@ -3580,7 +3543,6 @@
                         "isPure": false,
                         "kind": "functionCall",
                         "lValueRequested": false,
-                        "nameLocations": [],
                         "names": [],
                         "nodeType": "FunctionCall",
                         "src": "5965:25:9",
@@ -3709,7 +3671,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "mulDiv",
-            "nameLocation": "5733:6:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 1874,
@@ -3720,7 +3681,6 @@
                   "id": 1866,
                   "mutability": "mutable",
                   "name": "x",
-                  "nameLocation": "5757:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1907,
                   "src": "5749:9:9",
@@ -3747,7 +3707,6 @@
                   "id": 1868,
                   "mutability": "mutable",
                   "name": "y",
-                  "nameLocation": "5776:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1907,
                   "src": "5768:9:9",
@@ -3774,7 +3733,6 @@
                   "id": 1870,
                   "mutability": "mutable",
                   "name": "denominator",
-                  "nameLocation": "5795:11:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1907,
                   "src": "5787:19:9",
@@ -3801,7 +3759,6 @@
                   "id": 1873,
                   "mutability": "mutable",
                   "name": "rounding",
-                  "nameLocation": "5825:8:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 1907,
                   "src": "5816:17:9",
@@ -3817,9 +3774,6 @@
                     "pathNode": {
                       "id": 1871,
                       "name": "Rounding",
-                      "nameLocations": [
-                        "5816:8:9"
-                      ],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 1657,
                       "src": "5816:8:9"
@@ -3845,7 +3799,6 @@
                   "id": 1876,
                   "mutability": "mutable",
                   "name": "",
-                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 1907,
                   "src": "5863:7:9",
@@ -3972,7 +3925,6 @@
                       "id": 1923,
                       "mutability": "mutable",
                       "name": "result",
-                      "nameLocation": "7079:6:9",
                       "nodeType": "VariableDeclaration",
                       "scope": 2018,
                       "src": "7071:14:9",
@@ -4078,7 +4030,6 @@
                             "isPure": false,
                             "kind": "functionCall",
                             "lValueRequested": false,
-                            "nameLocations": [],
                             "names": [],
                             "nodeType": "FunctionCall",
                             "src": "7094:7:9",
@@ -5297,7 +5248,6 @@
                         "isPure": false,
                         "kind": "functionCall",
                         "lValueRequested": false,
-                        "nameLocations": [],
                         "names": [],
                         "nodeType": "FunctionCall",
                         "src": "7882:23:9",
@@ -5327,7 +5277,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "sqrt",
-            "nameLocation": "6289:4:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 1911,
@@ -5338,7 +5287,6 @@
                   "id": 1910,
                   "mutability": "mutable",
                   "name": "a",
-                  "nameLocation": "6302:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 2019,
                   "src": "6294:9:9",
@@ -5372,7 +5320,6 @@
                   "id": 1913,
                   "mutability": "mutable",
                   "name": "",
-                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 2019,
                   "src": "6328:7:9",
@@ -5424,7 +5371,6 @@
                           "id": 2031,
                           "mutability": "mutable",
                           "name": "result",
-                          "nameLocation": "8140:6:9",
                           "nodeType": "VariableDeclaration",
                           "scope": 2053,
                           "src": "8132:14:9",
@@ -5490,7 +5436,6 @@
                         "isPure": false,
                         "kind": "functionCall",
                         "lValueRequested": false,
-                        "nameLocations": [],
                         "names": [],
                         "nodeType": "FunctionCall",
                         "src": "8149:7:9",
@@ -5583,10 +5528,8 @@
                                     "isLValue": false,
                                     "isPure": true,
                                     "lValueRequested": false,
-                                    "memberLocation": "8208:2:9",
                                     "memberName": "Up",
                                     "nodeType": "MemberAccess",
-                                    "referencedDeclaration": 1655,
                                     "src": "8199:11:9",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_enum$_Rounding_$1657",
@@ -5763,7 +5706,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "sqrt",
-            "nameLocation": "8031:4:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 2026,
@@ -5774,7 +5716,6 @@
                   "id": 2022,
                   "mutability": "mutable",
                   "name": "a",
-                  "nameLocation": "8044:1:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 2055,
                   "src": "8036:9:9",
@@ -5801,7 +5742,6 @@
                   "id": 2025,
                   "mutability": "mutable",
                   "name": "rounding",
-                  "nameLocation": "8056:8:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 2055,
                   "src": "8047:17:9",
@@ -5817,9 +5757,6 @@
                     "pathNode": {
                       "id": 2023,
                       "name": "Rounding",
-                      "nameLocations": [
-                        "8047:8:9"
-                      ],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 1657,
                       "src": "8047:8:9"
@@ -5845,7 +5782,6 @@
                   "id": 2028,
                   "mutability": "mutable",
                   "name": "",
-                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 2055,
                   "src": "8089:7:9",
@@ -5892,7 +5828,6 @@
                       "id": 2064,
                       "mutability": "mutable",
                       "name": "result",
-                      "nameLocation": "8462:6:9",
                       "nodeType": "VariableDeclaration",
                       "scope": 2186,
                       "src": "8454:14:9",
@@ -7414,7 +7349,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "log2",
-            "nameLocation": "8392:4:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 2059,
@@ -7425,7 +7359,6 @@
                   "id": 2058,
                   "mutability": "mutable",
                   "name": "value",
-                  "nameLocation": "8405:5:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 2187,
                   "src": "8397:13:9",
@@ -7459,7 +7392,6 @@
                   "id": 2061,
                   "mutability": "mutable",
                   "name": "",
-                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 2187,
                   "src": "8435:7:9",
@@ -7511,7 +7443,6 @@
                           "id": 2199,
                           "mutability": "mutable",
                           "name": "result",
-                          "nameLocation": "9641:6:9",
                           "nodeType": "VariableDeclaration",
                           "scope": 2221,
                           "src": "9633:14:9",
@@ -7577,7 +7508,6 @@
                         "isPure": false,
                         "kind": "functionCall",
                         "lValueRequested": false,
-                        "nameLocations": [],
                         "names": [],
                         "nodeType": "FunctionCall",
                         "src": "9650:11:9",
@@ -7670,10 +7600,8 @@
                                     "isLValue": false,
                                     "isPure": true,
                                     "lValueRequested": false,
-                                    "memberLocation": "9713:2:9",
                                     "memberName": "Up",
                                     "nodeType": "MemberAccess",
-                                    "referencedDeclaration": 1655,
                                     "src": "9704:11:9",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_enum$_Rounding_$1657",
@@ -7854,7 +7782,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "log2",
-            "nameLocation": "9528:4:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 2194,
@@ -7865,7 +7792,6 @@
                   "id": 2190,
                   "mutability": "mutable",
                   "name": "value",
-                  "nameLocation": "9541:5:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 2223,
                   "src": "9533:13:9",
@@ -7892,7 +7818,6 @@
                   "id": 2193,
                   "mutability": "mutable",
                   "name": "rounding",
-                  "nameLocation": "9557:8:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 2223,
                   "src": "9548:17:9",
@@ -7908,9 +7833,6 @@
                     "pathNode": {
                       "id": 2191,
                       "name": "Rounding",
-                      "nameLocations": [
-                        "9548:8:9"
-                      ],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 1657,
                       "src": "9548:8:9"
@@ -7936,7 +7858,6 @@
                   "id": 2196,
                   "mutability": "mutable",
                   "name": "",
-                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 2223,
                   "src": "9590:7:9",
@@ -7983,7 +7904,6 @@
                       "id": 2232,
                       "mutability": "mutable",
                       "name": "result",
-                      "nameLocation": "9969:6:9",
                       "nodeType": "VariableDeclaration",
                       "scope": 2351,
                       "src": "9961:14:9",
@@ -9523,7 +9443,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "log10",
-            "nameLocation": "9898:5:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 2227,
@@ -9534,7 +9453,6 @@
                   "id": 2226,
                   "mutability": "mutable",
                   "name": "value",
-                  "nameLocation": "9912:5:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 2352,
                   "src": "9904:13:9",
@@ -9568,7 +9486,6 @@
                   "id": 2229,
                   "mutability": "mutable",
                   "name": "",
-                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 2352,
                   "src": "9942:7:9",
@@ -9620,7 +9537,6 @@
                           "id": 2364,
                           "mutability": "mutable",
                           "name": "result",
-                          "nameLocation": "11056:6:9",
                           "nodeType": "VariableDeclaration",
                           "scope": 2386,
                           "src": "11048:14:9",
@@ -9686,7 +9602,6 @@
                         "isPure": false,
                         "kind": "functionCall",
                         "lValueRequested": false,
-                        "nameLocations": [],
                         "names": [],
                         "nodeType": "FunctionCall",
                         "src": "11065:12:9",
@@ -9779,10 +9694,8 @@
                                     "isLValue": false,
                                     "isPure": true,
                                     "lValueRequested": false,
-                                    "memberLocation": "11129:2:9",
                                     "memberName": "Up",
                                     "nodeType": "MemberAccess",
-                                    "referencedDeclaration": 1655,
                                     "src": "11120:11:9",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_enum$_Rounding_$1657",
@@ -9963,7 +9876,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "log10",
-            "nameLocation": "10942:5:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 2359,
@@ -9974,7 +9886,6 @@
                   "id": 2355,
                   "mutability": "mutable",
                   "name": "value",
-                  "nameLocation": "10956:5:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 2388,
                   "src": "10948:13:9",
@@ -10001,7 +9912,6 @@
                   "id": 2358,
                   "mutability": "mutable",
                   "name": "rounding",
-                  "nameLocation": "10972:8:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 2388,
                   "src": "10963:17:9",
@@ -10017,9 +9927,6 @@
                     "pathNode": {
                       "id": 2356,
                       "name": "Rounding",
-                      "nameLocations": [
-                        "10963:8:9"
-                      ],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 1657,
                       "src": "10963:8:9"
@@ -10045,7 +9952,6 @@
                   "id": 2361,
                   "mutability": "mutable",
                   "name": "",
-                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 2388,
                   "src": "11005:7:9",
@@ -10092,7 +9998,6 @@
                       "id": 2397,
                       "mutability": "mutable",
                       "name": "result",
-                      "nameLocation": "11511:6:9",
                       "nodeType": "VariableDeclaration",
                       "scope": 2474,
                       "src": "11503:14:9",
@@ -11056,7 +10961,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "log256",
-            "nameLocation": "11439:6:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 2392,
@@ -11067,7 +10971,6 @@
                   "id": 2391,
                   "mutability": "mutable",
                   "name": "value",
-                  "nameLocation": "11454:5:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 2475,
                   "src": "11446:13:9",
@@ -11101,7 +11004,6 @@
                   "id": 2394,
                   "mutability": "mutable",
                   "name": "",
-                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 2475,
                   "src": "11484:7:9",
@@ -11153,7 +11055,6 @@
                           "id": 2487,
                           "mutability": "mutable",
                           "name": "result",
-                          "nameLocation": "12371:6:9",
                           "nodeType": "VariableDeclaration",
                           "scope": 2512,
                           "src": "12363:14:9",
@@ -11219,7 +11120,6 @@
                         "isPure": false,
                         "kind": "functionCall",
                         "lValueRequested": false,
-                        "nameLocations": [],
                         "names": [],
                         "nodeType": "FunctionCall",
                         "src": "12380:13:9",
@@ -11312,10 +11212,8 @@
                                     "isLValue": false,
                                     "isPure": true,
                                     "lValueRequested": false,
-                                    "memberLocation": "12445:2:9",
                                     "memberName": "Up",
                                     "nodeType": "MemberAccess",
-                                    "referencedDeclaration": 1655,
                                     "src": "12436:11:9",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_enum$_Rounding_$1657",
@@ -11546,7 +11444,6 @@
             "kind": "function",
             "modifiers": [],
             "name": "log256",
-            "nameLocation": "12256:6:9",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 2482,
@@ -11557,7 +11454,6 @@
                   "id": 2478,
                   "mutability": "mutable",
                   "name": "value",
-                  "nameLocation": "12271:5:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 2514,
                   "src": "12263:13:9",
@@ -11584,7 +11480,6 @@
                   "id": 2481,
                   "mutability": "mutable",
                   "name": "rounding",
-                  "nameLocation": "12287:8:9",
                   "nodeType": "VariableDeclaration",
                   "scope": 2514,
                   "src": "12278:17:9",
@@ -11600,9 +11495,6 @@
                     "pathNode": {
                       "id": 2479,
                       "name": "Rounding",
-                      "nameLocations": [
-                        "12278:8:9"
-                      ],
                       "nodeType": "IdentifierPath",
                       "referencedDeclaration": 1657,
                       "src": "12278:8:9"
@@ -11628,7 +11520,6 @@
                   "id": 2484,
                   "mutability": "mutable",
                   "name": "",
-                  "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 2514,
                   "src": "12320:7:9",
@@ -11661,19 +11552,18 @@
           }
         ],
         "scope": 2516,
-        "src": "202:12302:9",
-        "usedErrors": []
+        "src": "202:12302:9"
       }
     ],
     "src": "103:12402:9"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
+    "version": "0.8.1+commit.df193b15.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "3.4.13",
-  "updatedAt": "2023-04-27T22:29:59.659Z",
+  "updatedAt": "2023-05-09T23:45:50.050Z",
   "devdoc": {
     "details": "Standard math utilities missing in the Solidity language.",
     "kind": "dev",
