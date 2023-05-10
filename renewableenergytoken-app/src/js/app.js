@@ -533,7 +533,7 @@ handleRegister: function(){
         var option= r.price.toString();
         assetId=parseInt(assetId);
         App.contracts.vote.methods.transferFrom(fromAddress,assetId)
-        .send({from:App.currentAccount[0],value: Web3.utils.fromWei(option)})
+        .send({from:App.currentAccount[0],value: Web3.utils.fromWei(option, 'ether')})
         .on('receipt',(receipt)=>{
           console.log(receipt)
         })
