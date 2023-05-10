@@ -2,7 +2,7 @@ App = {
   web3: null,
   contracts: {},
   names: new Array(),
-  address: '0x66821DaD3B4733adD8Ca1ec5B9Be295068936186',
+  address: '0x92ddA01f582FBA704a26194800A1bc9DB5710872',
   url: 'https://sepolia.infura.io/v3/3fc60b1b45c1433f8ee141fc8f751a7a',
   network_id: 11155111,
   chairPerson: "0x1261Daa4EB46aC67A9AF5cA626e7F63cc9A6D90d",
@@ -533,7 +533,7 @@ handleRegister: function(){
         var option= r.price.toString();
         assetId=parseInt(assetId);
         App.contracts.vote.methods.transferFrom(fromAddress,assetId)
-        .send({from:App.currentAccount[0],value: Web3.utils.fromWei(option, 'ether')})
+        .send({from:App.currentAccount[0],value: r.price})
         .on('receipt',(receipt)=>{
           console.log(receipt)
         })

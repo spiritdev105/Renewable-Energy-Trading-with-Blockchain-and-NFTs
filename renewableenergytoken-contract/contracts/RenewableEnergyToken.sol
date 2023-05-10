@@ -105,7 +105,7 @@ contract RenewableEnergyToken is ERC721 {
         ownedAssetsCount[from]--;
         ownedAssetsCount[msg.sender]++;
         recOwner[recId] = msg.sender;
-        from.transfer(recs[recId].price * 1000000000000000000);
+		from.transfer(msg.value);
         emit Transfer(from, msg.sender, recId);
     }
 
